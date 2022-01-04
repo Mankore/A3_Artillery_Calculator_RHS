@@ -14,6 +14,7 @@ namespace A3_Arty_Calc
         static public double gravity = 9.8066;
 
         static public double simulationStep = 0.01;
+
         static public double toDegrees(double rad)
         {
             return (180 / Math.PI) * rad;
@@ -177,6 +178,7 @@ namespace A3_Arty_Calc
 
             return (currentAngle, tof, exitAngle, apex, px);
         }
+
         static public (double, double, double, double) simulateForAngle2(double muzzleVelocity, double angle, Artillery artillery, ShellType shell, double altDiff = 0)
         {
             double deltaT = simulationStep;
@@ -224,6 +226,7 @@ namespace A3_Arty_Calc
 
             return (currentPos.Y, tof, toDegrees(angle), apex);
         }
+
         static public Vector3D getVectorBasedOnAngle(double angle, Artillery artillery)
         {
             Vector3D vector = artillery.getBaseProjectileSpawnPoint(angle);
@@ -243,6 +246,5 @@ namespace A3_Arty_Calc
             Console.WriteLine($"Returned vector: {vector}");
             return vector;
         }
-
     }
 }

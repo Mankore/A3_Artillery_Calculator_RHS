@@ -113,6 +113,7 @@ namespace A3_Arty_Calc
             }
         }
     }
+
     class Art_2S1 : Artillery
     {
         public override string Name
@@ -188,6 +189,7 @@ namespace A3_Arty_Calc
             }
         }
     }
+
     class Art_M109A6 : Artillery
     {
         public override string Name
@@ -262,6 +264,7 @@ namespace A3_Arty_Calc
             }
         }
     }
+
     class Art_2S3M1 : Artillery
     {
         public override string Name

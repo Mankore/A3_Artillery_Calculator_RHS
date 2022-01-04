@@ -16,6 +16,7 @@ namespace A3_Arty_Calc
             this.artilleryCharge = artilleryCharge;
         }
     }
+
     class AngleSolution
     {
         public double angle;
@@ -31,5 +32,19 @@ namespace A3_Arty_Calc
             this.Ymultiplier = Ymultiplier;
             this.Yoffset = Yoffset;
         }
+    }
+
+    class TargetLogItem
+    {
+        public string CoordLog { get; set; }
+    }
+
+    class SimulatedAngle
+    {
+        public double Angle { get; set; }
+        public double Range { get; set; }
+        public double Tof { get; set; }
+        public double ExitAngle { get; set; }
+        public double Apex { get; set; }
     }
 }

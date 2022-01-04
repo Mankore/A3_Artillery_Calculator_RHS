@@ -40,15 +40,6 @@ namespace A3_Arty_Calc
             new trajectoryParams(60, 5206.94, 7071.26),
             new trajectoryParams(65, 5592.81, 6192.66)
         };
-        static double toDegrees(double rad)
-        {
-            return (180 / Math.PI) * rad;
-        }
-
-        static double toRadians(double grad)
-        {
-            return Math.PI / 180 * grad;
-        }
         static (double, double, double, double) simulateForAngle(double angle, double Xmultiplier, double Xoffset, double Ymultiplier, double Yoffset)
         {
             double muzzleVelocity = 690;
@@ -94,7 +85,7 @@ namespace A3_Arty_Calc
                 tof = 0;
             };
 
-            return (currentPos.Y, tof, toDegrees(angle), apex);
+            return (currentPos.Y, tof, Logic.toDegrees(angle), apex);
         }
 
         public static double bruteValues()
@@ -124,7 +115,7 @@ namespace A3_Arty_Calc
                     for (int k = 0; k < trajectories.Length; k++)
                     {
                         double px, tof, exitAngle, apex;
-                        (px, tof, exitAngle, apex) = simulateForAngle(toRadians(trajectories[k].angle), Math.Round(i, 1), Math.Round(j, 1), 8.6, 18.6);
+                        (px, tof, exitAngle, apex) = simulateForAngle(Logic.toRadians(trajectories[k].angle), Math.Round(i, 1), Math.Round(j, 1), 8.6, 18.6);
                         //(px, tof, exitAngle, apex) = simulateForAngle(toRadians(trajectories[k].angle), 0, 11.5, Math.Round(i, 1), Math.Round(j, 1));
                         apexTotal += Math.Abs(apex - trajectories[k].apex);
                         rangeTotal += Math.Abs(px - trajectories[k].range);
@@ -182,7 +173,7 @@ namespace A3_Arty_Calc
                 {
                     double px, tof, exitAngle, apex;
                     //(px, tof, exitAngle, apex) = simulateForAngle(toRadians(trajectory.angle), 0, 0, Math.Round(i, 1), Math.Round(j, 1));
-                    (px, tof, exitAngle, apex) = simulateForAngle(toRadians(trajectory.angle), Math.Round(i, 1), Math.Round(j, 1), 2.3, 17.6);
+                    (px, tof, exitAngle, apex) = simulateForAngle(Logic.toRadians(trajectory.angle), Math.Round(i, 1), Math.Round(j, 1), 2.3, 17.6);
                     double apexDiff = Math.Abs(apex - trajectory.apex);
                     double rangeDiff = Math.Abs(px - trajectory.range);
 

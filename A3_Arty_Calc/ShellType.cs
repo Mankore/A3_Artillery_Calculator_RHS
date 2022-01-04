@@ -37,6 +37,7 @@ namespace A3_Arty_Calc
             }
         }
     }
+
     class _3OF56 : ShellType
     {
         public override double airFriction
@@ -61,6 +62,7 @@ namespace A3_Arty_Calc
             }
         }
     }
+
     class _AMOS_HE : ShellType
     {
         public override double airFriction
@@ -85,6 +87,7 @@ namespace A3_Arty_Calc
             }
         }
     }
+
     class _AMOS_LG : ShellType
     {
         public override double airFriction
@@ -109,6 +112,7 @@ namespace A3_Arty_Calc
             }
         }
     }
+
     class _AMOS_CLUSTER : ShellType
     {
         public override double airFriction
@@ -133,6 +137,7 @@ namespace A3_Arty_Calc
             }
         }
     }
+
     class _53_WOF_27 : ShellType
     {
         public override double airFriction
