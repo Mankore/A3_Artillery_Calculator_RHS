@@ -168,22 +168,17 @@ namespace A3_Arty_Calc
                 altDiff = Logic.getAltitudeDiff(altBattery, altTarget);
             }
 
+            bool isEmptyInputCondition = String.IsNullOrEmpty(Battery_Alt.Text) || String.IsNullOrEmpty(Target_Alt.Text);
 
             for (double i = Arty.minAngle; i < Arty.maxAngle; i += angleStep)
             {
-                //double[] vs = new double[] { 10, 15, 30, 45, 60 };
-                //if (!vs.Contains(Math.Round(i, 1)))
-                //{
-                //    continue;
-                //}
-
                 //if (Math.Round(i, 1) % 5 != 0)
                 //{
                 //    continue;
                 //}
 
                 double range, tof, exitAngle, apex;
-                if (considerAltitude)
+                if (considerAltitude && !isEmptyInputCondition)
                 {
                     (range, tof, exitAngle, apex) = Logic.simulateForAngle2(shell.initSpeed * fMode.artilleryCharge, Logic.toRadians(i), Arty, shell, altDiff);
                 }
