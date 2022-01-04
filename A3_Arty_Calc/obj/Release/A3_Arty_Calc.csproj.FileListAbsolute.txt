@@ -1,0 +1,15 @@
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\bin\Release\A3_Arty_Calc.exe.config
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\bin\Release\A3_Arty_Calc.exe
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\bin\Release\A3_Arty_Calc.pdb
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.csprojAssemblyReference.cache
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\MainWindow.g.cs
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\App.g.cs
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc_MarkupCompile.cache
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc_MarkupCompile.lref
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\MainWindow.baml
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.g.resources
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.Properties.Resources.resources
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.csproj.GenerateResource.cache
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.csproj.CoreCompileInputs.cache
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.exe
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.pdb
