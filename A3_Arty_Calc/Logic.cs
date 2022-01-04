@@ -124,7 +124,7 @@ namespace A3_Arty_Calc
         */
         static public (double, double, double, double, double) getAngleSolutionForRange2(double zeroRange, double muzzleVelocity, double altDiff, Artillery artillery, ShellType shell, bool isTopDown)
         {
-            double angleTolerance = toRadians(0.1);
+            double angleTolerance = toRadians(0.05);
             double minAngle = artillery.minAngle;
             double maxAngle = artillery.maxAngle;
             int attemptCount = 0;
@@ -161,7 +161,7 @@ namespace A3_Arty_Calc
 
                 if (Math.Abs(maxAngle - minAngle) < angleTolerance)
                 {
-                    Console.WriteLine("Max Attempts reached");
+                    Console.WriteLine($"angleTolerance reached, attempts:{attemptCount}");
                     break;
                 }
 
