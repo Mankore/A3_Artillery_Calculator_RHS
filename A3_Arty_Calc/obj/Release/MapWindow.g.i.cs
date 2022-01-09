@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using A3_Arty_Calc;
-using SharpVectors.Converters;
 using System;
 using System.Diagnostics;
 using System.Windows;
