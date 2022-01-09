@@ -1,0 +1,16 @@
+﻿<Window x:Class="A3_Arty_Calc.MapWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        mc:Ignorable="d"
+        xmlns:local="clr-namespace:A3_Arty_Calc"
+        Title="MapWindow" Height="640.97" Width="615.922">
+    <Grid>
+        <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
+            <Image Source="img/sahrani.png" HorizontalAlignment="Left" Height="588" Margin="10,10,0,0" VerticalAlignment="Top" Width="613"/>
+        </local:ZoomBorder>
+        <!--<svg1:SVGImage Source="img/sahrani.svg" HorizontalAlignment="Left" Height="371" Margin="28,30,0,0" VerticalAlignment="Top" Width="742" />-->
+        <!--<svgc:SvgCanvas Source="img/sahrani.svg" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+    </Grid>
+</Window>

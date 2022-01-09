@@ -331,7 +331,7 @@ namespace A3_Arty_Calc
         }
         public override Vector3D getBaseProjectileSpawnPoint(double angle)
         {
-            return new Vector3D(0, 0, 5);
+            return new Vector3D(0, 0, 10);
         }
         public override AngleSolution[] angleSolutions
         {

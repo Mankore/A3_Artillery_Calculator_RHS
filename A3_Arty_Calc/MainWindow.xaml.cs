@@ -207,5 +207,12 @@ namespace A3_Arty_Calc
             Array.ForEach(Arty.modes, item => Charge_Selector.Items.Add(item.name));
             Charge_Selector.SelectedItem = Charge_Selector.Items[0];
         }
+
+        private void Open_Map_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MapWindow mapWindow = new MapWindow();
+            mapWindow.Show();
+
+        }
     }
 }
