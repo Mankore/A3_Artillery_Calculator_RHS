@@ -87,10 +87,6 @@ namespace A3_Arty_Calc
                     Cnv.Children.Remove(artyEllipse);
                     artyEllipse = ellipse;
                 }
-
-                ToolTip tt = ToolTipService.GetToolTip(ellipse) as ToolTip;
-                //tt.StaysOpen = true;
-                Console.WriteLine(tt);
             }
         }
 
@@ -122,16 +118,20 @@ namespace A3_Arty_Calc
 
             ellipse.MouseLeave += (object sender, MouseEventArgs e) =>
             {
-                //Console.WriteLine("Leave");
+                ToolTip ttEllipse = ToolTipService.GetToolTip(ellipse) as ToolTip;
+                ttEllipse.IsOpen = false;
             };
+
+            ToolTip tt = new ToolTip();
 
             ToolTipService.SetInitialShowDelay(ellipse, 0);
             ToolTipService.SetIsEnabled(ellipse, true);
+            string ttText = "";
 
 
             if (isShiftPressed)
             {
-                ellipse.ToolTip = $"Arty Coordinates: {foundCoord.x} {foundCoord.y} {foundCoord.height}";
+                ttText = $"Arty Coordinates: {foundCoord.x} {foundCoord.y} {foundCoord.height}";
             } else
             {
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -163,12 +163,27 @@ namespace A3_Arty_Calc
 
                 (elevation, tof, exitAngle, apex, dist) = Logic.getAngleSolutionForRange2(range, initSpeed, altDiff, Arty, shell, isTopDown);
 
-                ellipse.ToolTip = $"Arty: {Arty.Name}, Shell: {shell.name}, fMode: {fMode.name}\n" +
+                ttText = $"Arty: {Arty.Name}, Shell: {shell.name}, fMode: {fMode.name}\n" +
                     $"Elevation: {elevation:f3}, tof: {tof:f3}, eAngle: {exitAngle:f3}\n" +
                     $"apex: {apex:f3}, range: {range:f3}";
             }
 
+            tt.Content = ttText;
+            tt.IsOpen = true;
+            ToolTipService.SetToolTip(ellipse, tt);
+
             return ellipse;
+        }
+
+        private void ClearPoints_Button_Click(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<Ellipse> collection = Cnv.Children.OfType<Ellipse>();
+            Ellipse[] ellipseArr = collection.ToArray();
+
+            for (int i = ellipseArr.Count() - 1; i >= 0; i--)
+            {
+                Cnv.Children.Remove(ellipseArr[i]);
+            }
         }
     }
 }

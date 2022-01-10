@@ -5,15 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
         xmlns:local="clr-namespace:A3_Arty_Calc"
-        Title="MapWindow" Height="650" Width="650">
+        Title="MapWindow" Height="650" Width="800">
     <Grid>
-        <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
+        <local:ZoomBorder x:Name="border" Background="Gray">
             <Canvas x:Name="Cnv">
-            <Image Source="img/sahrani.png" Stretch="Fill" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Height="600" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                
+                <Image Source="img/sahrani.png" Stretch="Fill" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Height="600" MouseLeftButtonDown="Image_MouseLeftButtonDown" />
             </Canvas>
         </local:ZoomBorder>
-        <!--<svg1:SVGImage Source="img/sahrani.svg" HorizontalAlignment="Left" Height="371" Margin="28,30,0,0" VerticalAlignment="Top" Width="742" />-->
-        <!--<svgc:SvgCanvas Source="img/sahrani.svg" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+        <Button Content="Clear All Points" HorizontalAlignment="Left" Margin="638,20,0,0" VerticalAlignment="Top" Width="109" Click="ClearPoints_Button_Click"/>
     </Grid>
 </Window>
