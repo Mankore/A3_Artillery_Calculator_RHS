@@ -24,7 +24,7 @@ namespace A3_Arty_Calc
     {
         Artillery DefaultArty = new Art_2S1_Direct();
 
-        Artillery[] ArtilleryList = new Artillery[] {
+        public Artillery[] ArtilleryList = new Artillery[] {
             new Art_2S1_Direct(),
             new Art_2S1(),
             new Art_M109A6(),

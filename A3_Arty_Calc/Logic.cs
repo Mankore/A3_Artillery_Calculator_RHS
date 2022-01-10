@@ -27,6 +27,7 @@ namespace A3_Arty_Calc
 
         static public double getRange(double x1, double y1, double x2, double y2, double z1 = 0, double z2 = 0)
         {
+            Console.WriteLine($"{x1} {y1} {x2} {y2}");
             double valX = Math.Pow(x1 - x2, 2);
             double valY = Math.Pow(y1 - y2, 2);
             double valZ = Math.Pow(z1 - z2, 2);
@@ -161,11 +162,11 @@ namespace A3_Arty_Calc
 
                 if (Math.Abs(maxAngle - minAngle) < angleTolerance)
                 {
-                    Console.WriteLine($"angleTolerance reached, attempts:{attemptCount}");
+                    //Console.WriteLine($"angleTolerance reached, attempts:{attemptCount}");
                     break;
                 }
 
-                Console.WriteLine($"currentAngle:{currentAngle:f3}, maxAngle: {maxAngle:f3}, minAngle: {minAngle:f3}\n");
+                //Console.WriteLine($"currentAngle:{currentAngle:f3}, maxAngle: {maxAngle:f3}, minAngle: {minAngle:f3}\n");
                 ++attemptCount;
             }
 
@@ -211,12 +212,12 @@ namespace A3_Arty_Calc
                 angle = Math.Atan2(speed.Z, speed.Y);
                 //Console.WriteLine($"py: {currentPos.Z:F3}, px:{currentPos.Y:F3}, tof:{tof:F3}, V:{speed:F3}, Vx: {speed.Y:F3}, Vy: {speed.Z:F3}, Angle: {toDegrees(angle):F6}, changeInVelocity: {changeInVelocity}");
             }
-            Console.WriteLine($"px:{currentPos.Y:F3}, tof:{tof:F3}, V:{speed:F3}, exitAngle:{toDegrees(angle):F3}, py:{currentPos.Z:F3}");
+            //Console.WriteLine($"px:{currentPos.Y:F3}, tof:{tof:F3}, V:{speed:F3}, exitAngle:{toDegrees(angle):F3}, py:{currentPos.Z:F3}");
             double vyRatio = (altDiff - currentPos.Z) / speed.Z;
-            Console.WriteLine($"altDiff:{altDiff:f3}, py:{currentPos.Z:f3}, vy:{speed.Z:f3}");
+            //Console.WriteLine($"altDiff:{altDiff:f3}, py:{currentPos.Z:f3}, vy:{speed.Z:f3}");
             double pxCorrection = Math.Abs(speed.Y * vyRatio);
             currentPos.Y -= pxCorrection;
-            Console.WriteLine($"vyRatio:{vyRatio:F3}, pxCorrection:{pxCorrection:F3}, pxAfter:{currentPos.Y:F3}, apex:{apex:f3}");
+            //Console.WriteLine($"vyRatio:{vyRatio:F3}, pxCorrection:{pxCorrection:F3}, pxAfter:{currentPos.Y:F3}, apex:{apex:f3}");
 
             if (apex < altDiff)
             {

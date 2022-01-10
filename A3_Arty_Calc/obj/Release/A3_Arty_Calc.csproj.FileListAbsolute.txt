@@ -15,3 +15,4 @@ C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.c
 C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.csproj.CoreCompileInputs.cache
 C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.exe
 C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.pdb
+C:\Users\igorz\source\repos\A3_Arty_Calc\A3_Arty_Calc\obj\Release\A3_Arty_Calc.csprojAssemblyReference.cache

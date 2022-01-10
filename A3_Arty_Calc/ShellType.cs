@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace A3_Arty_Calc
 {
-    abstract class ShellType
+    abstract public class ShellType
     {
         public abstract double airFriction { get; }
         public abstract double initSpeed { get; }

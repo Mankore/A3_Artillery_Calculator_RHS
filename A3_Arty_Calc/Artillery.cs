@@ -8,7 +8,7 @@ using System.Windows.Media.Media3D;
 namespace A3_Arty_Calc
 {
 
-    abstract class Artillery
+    abstract public class Artillery
     {
         public abstract string Name { get; }
         public abstract double simulationStep { get; }

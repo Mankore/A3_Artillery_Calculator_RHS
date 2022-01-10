@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace A3_Arty_Calc
 {
-    class FireMode
+    public class FireMode
     {
         public string name;
         public float artilleryCharge;
@@ -17,7 +17,7 @@ namespace A3_Arty_Calc
         }
     }
 
-    class AngleSolution
+    public class AngleSolution
     {
         public double angle;
         public double Xmultiplier;
