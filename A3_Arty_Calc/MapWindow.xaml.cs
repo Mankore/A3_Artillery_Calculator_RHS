@@ -87,6 +87,10 @@ namespace A3_Arty_Calc
                     Cnv.Children.Remove(artyEllipse);
                     artyEllipse = ellipse;
                 }
+
+                ToolTip tt = ToolTipService.GetToolTip(ellipse) as ToolTip;
+                //tt.StaysOpen = true;
+                Console.WriteLine(tt);
             }
         }
 
@@ -120,6 +124,10 @@ namespace A3_Arty_Calc
             {
                 //Console.WriteLine("Leave");
             };
+
+            ToolTipService.SetInitialShowDelay(ellipse, 0);
+            ToolTipService.SetIsEnabled(ellipse, true);
+
 
             if (isShiftPressed)
             {
@@ -157,7 +165,7 @@ namespace A3_Arty_Calc
 
                 ellipse.ToolTip = $"Arty: {Arty.Name}, Shell: {shell.name}, fMode: {fMode.name}\n" +
                     $"Elevation: {elevation:f3}, tof: {tof:f3}, eAngle: {exitAngle:f3}\n" +
-                    $"apex: {apex:f3}, dist: {dist:f3}";
+                    $"apex: {apex:f3}, range: {range:f3}";
             }
 
             return ellipse;
