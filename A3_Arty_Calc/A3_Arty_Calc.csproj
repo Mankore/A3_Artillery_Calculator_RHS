@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CoordHeight.cs" />
     <Compile Include="ZoomBorder.cs" />
     <Compile Include="Helper_Classes.cs" />
     <Compile Include="MapWindow.xaml.cs">
@@ -137,6 +138,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\sahrani.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="coordinates\sahrani.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

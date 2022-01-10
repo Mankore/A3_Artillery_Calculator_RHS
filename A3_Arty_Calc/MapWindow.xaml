@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
         xmlns:local="clr-namespace:A3_Arty_Calc"
-        Title="MapWindow" Height="640.97" Width="615.922">
+        Title="MapWindow" Height="650" Width="650">
     <Grid>
         <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
-            <Image Source="img/sahrani.png" HorizontalAlignment="Left" Height="588" Margin="10,10,0,0" VerticalAlignment="Top" Width="613"/>
+            <Image Source="img/sahrani.png" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Height="600" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         </local:ZoomBorder>
         <!--<svg1:SVGImage Source="img/sahrani.svg" HorizontalAlignment="Left" Height="371" Margin="28,30,0,0" VerticalAlignment="Top" Width="742" />-->
         <!--<svgc:SvgCanvas Source="img/sahrani.svg" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->

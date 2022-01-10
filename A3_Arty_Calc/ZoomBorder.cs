@@ -86,7 +86,7 @@ namespace A3_Arty_Calc
                 var st = GetScaleTransform(child);
                 var tt = GetTranslateTransform(child);
 
-                double zoom = e.Delta > 0 ? .2 : -.2;
+                double zoom = e.Delta > 0 ? .5 : -.5;
                 if (!(e.Delta > 0) && (st.ScaleX < .4 || st.ScaleY < .4))
                     return;
 
