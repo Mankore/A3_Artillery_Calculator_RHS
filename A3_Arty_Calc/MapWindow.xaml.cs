@@ -37,10 +37,11 @@ namespace A3_Arty_Calc
                 try
                 {
 
-                x = Convert.ToInt32(data[0]);
-                y = Convert.ToInt32(data[1]);
-                height = double.Parse(data[2], CultureInfo.InvariantCulture);
-                } catch
+                    x = Convert.ToInt32(data[0]);
+                    y = Convert.ToInt32(data[1]);
+                    height = double.Parse(data[2], CultureInfo.InvariantCulture);
+                }
+                catch
                 {
                     Console.WriteLine("Error while converting values");
                 }
@@ -57,7 +58,7 @@ namespace A3_Arty_Calc
             if (image != null && e.ClickCount >= 2)
             {
                 Point coordinates = e.GetPosition(image);
-                
+
                 double iWidth = image.Width;
                 double iHeight = image.Height;
 
@@ -72,7 +73,26 @@ namespace A3_Arty_Calc
 
                 CoordHeight foundCoord = coordList.Find(item => item.x == roundedArmaX && item.y == roundedArmaY);
                 Console.WriteLine(foundCoord.toString());
+
+                createEllipse(coordinates);
             }
+        }
+
+        private void createEllipse(Point coords)
+        {
+            Ellipse ellipse = new Ellipse();
+
+            const double ellipseSize = 0.5;
+            ellipse.Fill = Brushes.Red;
+            ellipse.Opacity = 0.5;
+            
+            ellipse.Width = ellipseSize;
+            ellipse.Height = ellipseSize;
+
+            Cnv.Children.Add(ellipse);
+
+            Canvas.SetLeft(ellipse, coords.X - (ellipseSize / 2));
+            Canvas.SetTop(ellipse, coords.Y - (ellipseSize / 2));
         }
     }
 }

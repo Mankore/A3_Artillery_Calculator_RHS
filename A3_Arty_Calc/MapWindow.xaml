@@ -8,7 +8,10 @@
         Title="MapWindow" Height="650" Width="650">
     <Grid>
         <local:ZoomBorder x:Name="border" ClipToBounds="True" Background="Gray">
-            <Image Source="img/sahrani.png" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Height="600" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+            <Canvas x:Name="Cnv">
+            <Image Source="img/sahrani.png" Stretch="Fill" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Height="600" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                
+            </Canvas>
         </local:ZoomBorder>
         <!--<svg1:SVGImage Source="img/sahrani.svg" HorizontalAlignment="Left" Height="371" Margin="28,30,0,0" VerticalAlignment="Top" Width="742" />-->
         <!--<svgc:SvgCanvas Source="img/sahrani.svg" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
