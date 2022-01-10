@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/sahrani.svg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute(".gitignore")]
 
 
