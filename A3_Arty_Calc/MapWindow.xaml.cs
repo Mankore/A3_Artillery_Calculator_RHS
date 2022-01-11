@@ -23,6 +23,8 @@ namespace A3_Arty_Calc
         static List<CoordHeight> coordList = new List<CoordHeight>();
         static CoordHeight artyCoord = new CoordHeight(0, 0, 0);
         static Ellipse artyEllipse;
+        static Brush friendlyBrush = Brushes.DarkBlue;
+        static Brush targetBrush = Brushes.Red;
         public MapWindow()
         {
             InitializeComponent();
@@ -37,9 +39,9 @@ namespace A3_Arty_Calc
 
         private void initList(string filename = "sahrani.txt")
         {
-            //foreach (string line in System.IO.File.ReadLines("../../coordinates/" + filename))
-                foreach (string line in System.IO.File.ReadLines("./coordinates/" + filename))
-                {
+            if (coordList.Count != 0) coordList.Clear();
+            foreach (string line in System.IO.File.ReadLines("./coordinates/" + filename))
+            {
                 string[] data = line.Split(' ');
                 CoordHeight coords = new CoordHeight(-1, -1, -1);
                 try
@@ -100,22 +102,28 @@ namespace A3_Arty_Calc
 
                     Cnv.Children.Remove(artyEllipse);
                     artyEllipse = ellipse;
+
+                    clearTargets();
+
+                    // Set main window Arty Coordinates
+                    MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                    mainWindow.Battery_X.Text = Convert.ToString(artyCoord.x);
+                    mainWindow.Battery_Y.Text = Convert.ToString(artyCoord.y);
+                    mainWindow.Battery_Alt.Text = Convert.ToString(artyCoord.height);
+
                 }
             }
         }
 
         private Ellipse createEllipse(Point coords, bool isShiftPressed, CoordHeight foundCoord)
         {
-            Brush friendlyBrush = Brushes.DarkBlue;
-            Brush targetBrush = Brushes.Red;
-
             Ellipse ellipse = new Ellipse();
 
             const double ellipseSize = 0.5;
             ellipse.Fill = isShiftPressed ? friendlyBrush : targetBrush;
             ellipse.Stroke = isShiftPressed ? friendlyBrush : targetBrush;
             ellipse.StrokeThickness = 0.1;
-            ellipse.Opacity = 0.5;
+            ellipse.Opacity = 0.75;
 
             ellipse.Width = ellipseSize;
             ellipse.Height = ellipseSize;
@@ -145,11 +153,14 @@ namespace A3_Arty_Calc
 
             if (isShiftPressed)
             {
-                ttText = $"Arty Coordinates: {foundCoord.x} {foundCoord.y} {foundCoord.height}";
-            } else
+                double areaFlatness = checkIfFlatAround(foundCoord);
+                ttText = $"Arty Coordinates: {foundCoord.x} {foundCoord.y} {foundCoord.height}\n" +
+                    $"Flatness: {areaFlatness:f5}";
+            }
+            else
             {
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-                
+
                 string Artillery = mainWindow.Artillery_Selector.Text;
                 double xBattery = artyCoord.x;
                 double yBattery = artyCoord.y;
@@ -159,10 +170,10 @@ namespace A3_Arty_Calc
                 double yTarget = foundCoord.y;
                 double altTarget = foundCoord.height;
 
-                //if (xBattery >= 10000) xBattery = xBattery / 10;
-                //if (yBattery >= 10000) yBattery = yBattery / 10;
-                //if (xTarget >= 10000) xTarget = xTarget / 10;
-                //if (yTarget >= 10000) yTarget = yTarget / 10;
+                // Set main Window Target coordinates
+                mainWindow.Target_X.Text = Convert.ToString(foundCoord.x);
+                mainWindow.Target_Y.Text = Convert.ToString(foundCoord.y);
+                mainWindow.Target_Alt.Text = Convert.ToString(foundCoord.height);
 
                 Console.WriteLine($"\nxBattery:{xBattery}, yBattery:{yBattery}, xTarget:{xTarget},yTarget:{yTarget}\n");
 
@@ -184,7 +195,7 @@ namespace A3_Arty_Calc
 
                 ttText = $"Arty: {Arty.Name}, Shell: {shell.name}, fMode: {fMode.name}\n" +
                     $"Elevation: {elevation:f3}, tof: {tof:f3}, eAngle: {exitAngle:f3}\n" +
-                    $"apex: {apex:f3}, range: {range:f3}";
+                    $"apex: {apex:f3}, range: {range:f3}, targetHeight: {altTarget}";
             }
 
             tt.Content = ttText;
@@ -202,6 +213,60 @@ namespace A3_Arty_Calc
             for (int i = ellipseArr.Count() - 1; i >= 0; i--)
             {
                 Cnv.Children.Remove(ellipseArr[i]);
+            }
+        }
+
+        private void clearTargets()
+        {
+            IEnumerable<Ellipse> collection = Cnv.Children.OfType<Ellipse>();
+            Ellipse[] ellipseArr = collection.ToArray();
+
+            for (int i = ellipseArr.Count() - 1; i >= 0; i--)
+            {
+                if (ellipseArr[i] != artyEllipse)
+                {
+                    Cnv.Children.Remove(ellipseArr[i]);
+                }
+            }
+        }
+
+        private double checkIfFlatAround(CoordHeight coord)
+        {
+            double midDeviation = 999;
+            double altSumm = 0;
+            double pointHeight = coord.height;
+
+            for (int i = coord.x - 1; i < coord.x + 2; i++)
+            {
+                for (int j = coord.y - 1; j < coord.y + 2; j++)
+                {
+                    CoordHeight foundCoord = coordList.Find(item => item.x == i && item.y == j);
+                    altSumm += Math.Abs(pointHeight - foundCoord.height);
+                }
+            }
+
+            midDeviation = altSumm / 8;
+            Console.WriteLine($"midDeviation: {midDeviation}");
+            return midDeviation;
+        }
+
+        private void ClearTargets_Button_Click(object sender, RoutedEventArgs e)
+        {
+            clearTargets();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                Point p = Mouse.GetPosition(Cnv);
+                HitTestResult hitTestResult = VisualTreeHelper.HitTest(Cnv, p);
+                Ellipse ellipseToDelete = hitTestResult.VisualHit as Ellipse;
+                if (ellipseToDelete == null)
+                    return;
+
+                Cnv.Children.Remove(ellipseToDelete);
+                e.Handled = true;
             }
         }
     }
