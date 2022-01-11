@@ -9,7 +9,7 @@
         Title="Map" Height="650" Width="800">
     <Grid>
         <local:ZoomBorder x:Name="border" Background="Gray" ClipToBounds="True">
-            <Canvas x:Name="Cnv" MouseLeftButtonDown="Canvas_MouseLeftButtonDown">
+            <Canvas x:Name="Cnv">
                 <Image Source="./img/sahrani_opt.png" Stretch="Fill" Margin="10,10,0,0" VerticalAlignment="Top" Width="600" Height="600" MouseLeftButtonDown="Image_MouseLeftButtonDown" Name="Map_Image" />
             </Canvas>
         </local:ZoomBorder>
