@@ -26,13 +26,20 @@ namespace A3_Arty_Calc
         public MapWindow()
         {
             InitializeComponent();
-            initList();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            string SelectedMap = mainWindow.Map_Selector.Text;
+            initList(SelectedMap.ToLower() + ".txt");
+            var uri = new Uri("pack://application:,,,/img/" + SelectedMap + "_opt.png");
+            //var uri = new Uri("./img/" + SelectedMap + "_opt.png", UriKind.Relative);
+            var bitmap = new BitmapImage(uri);
+            Map_Image.Source = bitmap;
         }
 
         private void initList(string filename = "sahrani.txt")
         {
-            foreach (string line in System.IO.File.ReadLines("../../coordinates/" + filename))
-            {
+            //foreach (string line in System.IO.File.ReadLines("../../coordinates/" + filename))
+                foreach (string line in System.IO.File.ReadLines("./coordinates/" + filename))
+                {
                 string[] data = line.Split(' ');
                 CoordHeight coords = new CoordHeight(-1, -1, -1);
                 try
@@ -40,8 +47,8 @@ namespace A3_Arty_Calc
                     coords.x = Convert.ToInt32(data[0]);
                     coords.y = Convert.ToInt32(data[1]);
                     coords.height = double.Parse(data[2], CultureInfo.InvariantCulture);
-                    if (coords.x >= 10000) coords.x = coords.x / 10;
-                    if (coords.y >= 10000) coords.y = coords.y / 10;
+                    if (coords.x >= 10) coords.x = coords.x / 10;
+                    if (coords.y >= 10) coords.y = coords.y / 10;
                 }
                 catch
                 {
@@ -72,7 +79,14 @@ namespace A3_Arty_Calc
                 double roundedArmaX = Math.Round(armaX / 10) * 10;
                 double roundedArmaY = Math.Round(armaY / 10) * 10;
 
-                CoordHeight foundCoord = coordList.Find(item => item.x == roundedArmaX && item.y == roundedArmaY);
+                //Console.WriteLine($"coordinates.x:{coordinates.X}, coordinates.y:{coordinates.Y}");
+                //Console.WriteLine($"iWidth:{iWidth}, iHeight:{iHeight}");
+                //Console.WriteLine($"xPercent:{xPercent}, yPercent:{yPercent}");
+                //Console.WriteLine($"armaX:{armaX}, armaY:{armaY}");
+                //Console.WriteLine($"roundedArmaX:{roundedArmaX}, roundedArmaY:{roundedArmaY}");
+
+                //CoordHeight foundCoord = coordList.Find(item => item.x == roundedArmaX && item.y == roundedArmaY);
+                CoordHeight foundCoord = coordList.Find(item => item.x == armaX && item.y == armaY);
                 Console.WriteLine(foundCoord.toString());
 
                 bool isShiftPressed = Keyboard.IsKeyDown(Key.LeftShift);
@@ -145,7 +159,12 @@ namespace A3_Arty_Calc
                 double yTarget = foundCoord.y;
                 double altTarget = foundCoord.height;
 
-                Console.WriteLine($"{xBattery} {yBattery} {altBattery}\n{xTarget} {yTarget} {altTarget}");
+                //if (xBattery >= 10000) xBattery = xBattery / 10;
+                //if (yBattery >= 10000) yBattery = yBattery / 10;
+                //if (xTarget >= 10000) xTarget = xTarget / 10;
+                //if (yTarget >= 10000) yTarget = yTarget / 10;
+
+                Console.WriteLine($"\nxBattery:{xBattery}, yBattery:{yBattery}, xTarget:{xTarget},yTarget:{yTarget}\n");
 
                 string Charge = mainWindow.Charge_Selector.Text;
                 string Shell = mainWindow.Shell_Selector.Text;

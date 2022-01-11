@@ -27,11 +27,11 @@ namespace A3_Arty_Calc
 
         static public double getRange(double x1, double y1, double x2, double y2, double z1 = 0, double z2 = 0)
         {
-            Console.WriteLine($"{x1} {y1} {x2} {y2}");
             double valX = Math.Pow(x1 - x2, 2);
             double valY = Math.Pow(y1 - y2, 2);
             double valZ = Math.Pow(z1 - z2, 2);
             double range = 10 * Math.Sqrt(valX + valY + valZ);
+            Console.WriteLine($"{x1} {y1} {x2} {y2} {range}");
             return range;
         }
 
@@ -244,7 +244,7 @@ namespace A3_Arty_Calc
                     }
                 }
             }
-            Console.WriteLine($"Returned vector: {vector}");
+            //Console.WriteLine($"Returned vector: {vector}");
             return vector;
         }
     }

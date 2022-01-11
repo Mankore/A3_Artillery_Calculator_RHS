@@ -66,7 +66,15 @@
         <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="345,35,0,0" VerticalAlignment="Top" Width="108" x:Name="Artillery_Selector" SelectionChanged="Artillery_Selector_SelectionChanged">
         </ComboBox>
         <Label Grid.ColumnSpan="2" Content="Select Artillery" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
-        <Button Grid.ColumnSpan="2" Content="Open Map" HorizontalAlignment="Left" Height="23" Margin="15,169,0,0" VerticalAlignment="Top" Width="105" Click="Open_Map_Button_Click"/>
+        <Button Grid.ColumnSpan="2" Content="Open Map" HorizontalAlignment="Left" Height="23" Margin="156,169,0,0" VerticalAlignment="Top" Width="105" Click="Open_Map_Button_Click"/>
+        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,169,0,0" VerticalAlignment="Top" Width="108" x:Name="Map_Selector">
+            <ComboBoxItem IsSelected="True">Sahrani</ComboBoxItem>
+            <ComboBoxItem>Altis</ComboBoxItem>
+            <ComboBoxItem>Napf</ComboBoxItem>
+            <ComboBoxItem>Virolahti</ComboBoxItem>
+            <ComboBoxItem>Al_Rayak</ComboBoxItem>
+            <ComboBoxItem>Cherno</ComboBoxItem>
+        </ComboBox>
 
 
     </Grid>
