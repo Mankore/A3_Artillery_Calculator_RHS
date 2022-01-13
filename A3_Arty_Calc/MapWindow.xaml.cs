@@ -84,6 +84,7 @@ namespace A3_Arty_Calc
                 else
                 {
                     Ellipse ellipse = createMark(e.GetPosition(Cnv), isShiftPressed, foundCoord);
+                    MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 
                     if (isShiftPressed)
                     {
@@ -96,11 +97,16 @@ namespace A3_Arty_Calc
                         clearTargets();
 
                         // Set main window Arty Coordinates
-                        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                         mainWindow.Battery_X.Text = Convert.ToString(artyCoord.x);
                         mainWindow.Battery_Y.Text = Convert.ToString(artyCoord.y);
                         mainWindow.Battery_Alt.Text = Convert.ToString(artyCoord.height);
 
+                    } else
+                    {
+                        // Set main Window Target coordinates
+                        mainWindow.Target_X.Text = Convert.ToString(foundCoord.x);
+                        mainWindow.Target_Y.Text = Convert.ToString(foundCoord.y);
+                        mainWindow.Target_Alt.Text = Convert.ToString(foundCoord.height);
                     }
                 }
             }
@@ -171,11 +177,6 @@ namespace A3_Arty_Calc
                 double yTarget = foundCoord.y;
                 double altTarget = foundCoord.height;
 
-                // Set main Window Target coordinates
-                mainWindow.Target_X.Text = Convert.ToString(foundCoord.x);
-                mainWindow.Target_Y.Text = Convert.ToString(foundCoord.y);
-                mainWindow.Target_Alt.Text = Convert.ToString(foundCoord.height);
-
                 Console.WriteLine($"\nxBattery:{xBattery}, yBattery:{yBattery}, xTarget:{xTarget},yTarget:{yTarget}\n");
 
                 string Charge = mainWindow.Charge_Selector.Text;
@@ -192,11 +193,16 @@ namespace A3_Arty_Calc
                 ShellType shell = Array.Find(Arty.shellTypes, item => item.name == Shell);
                 initSpeed = shell.initSpeed * fMode.artilleryCharge;
 
-                (elevation, tof, exitAngle, apex, dist) = Logic.getAngleSolutionForRange2(range, initSpeed, altDiff, Arty, shell, isTopDown);
+                (elevation, tof, exitAngle, apex, dist) = Logic.getAngleSolutionForRange2(range, initSpeed, altDiff, Arty, shell, false);
+
+                double tdElevation, tdTof, tdExitAngle, tdApex, tdDist;
+
+                (tdElevation, tdTof, tdExitAngle, tdApex, tdDist) = Logic.getAngleSolutionForRange2(range, initSpeed, altDiff, Arty, shell, true);
 
                 ttText = $"Arty: {Arty.Name}, Shell: {shell.name}, fMode: {fMode.name}\n" +
-                    $"Elevation: {elevation:f3}, tof: {tof:f3}, eAngle: {exitAngle:f3}\n" +
-                    $"apex: {apex:f3}, range: {range:f3}, targetHeight: {altTarget}";
+                    $"Elevation: {elevation:f3}, Tof: {tof:f3}, eAngle: {exitAngle:f3}\n" +
+                    $"apex: {apex:f3}, range: {range:f3}, targetHeight: {altTarget}\n" +
+                    $"Top-Down:\nElevation: {tdElevation:f3}, Tof: {tdTof:f3}, eAngle: {tdExitAngle:f3}";
             }
 
             tt.Content = ttText;
@@ -208,7 +214,8 @@ namespace A3_Arty_Calc
 
         private Ellipse createTriggerEllipse(Point coords)
         {
-            Ellipse ellipse = createEllipse(coords, 30, triggerBrush, 0.25);
+            Ellipse ellipse = createEllipse(coords, 29.5, triggerBrush, 0.25);
+            ellipse.IsHitTestVisible = false;
 
             if (triggerEllipse != null) Cnv.Children.Remove(triggerEllipse);
             triggerEllipse = ellipse;
