@@ -23,8 +23,10 @@ namespace A3_Arty_Calc
         static List<CoordHeight> coordList = new List<CoordHeight>();
         static CoordHeight artyCoord = new CoordHeight(0, 0, 0);
         static Ellipse artyEllipse;
+        static Ellipse triggerEllipse;
         static Brush friendlyBrush = Brushes.DarkBlue;
         static Brush targetBrush = Brushes.Red;
+        static Brush triggerBrush = Brushes.Yellow;
         public MapWindow()
         {
             InitializeComponent();
@@ -68,71 +70,69 @@ namespace A3_Arty_Calc
             bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl);
             bool isAltPressed = Keyboard.IsKeyDown(Key.LeftAlt);
             Image image = e.OriginalSource as Image;
-            //if (image != null && e.ClickCount >= 2)
-            if (image != null && (isCtrlPressed || isShiftPressed))
+            
+            if (image != null && (isCtrlPressed || isShiftPressed || isAltPressed))
             {
                 Point coordinates = e.GetPosition(image);
-
-                double iWidth = image.Width;
-                double iHeight = image.Height;
-
-                double xPercent = coordinates.X / iWidth;
-                double yPercent = (iHeight - coordinates.Y) / iHeight;
-
-                double armaX = Math.Round(coordList[coordList.Count - 1].x * xPercent);
-                double armaY = Math.Round(coordList[coordList.Count - 1].x * yPercent);
-
-                double roundedArmaX = Math.Round(armaX / 10) * 10;
-                double roundedArmaY = Math.Round(armaY / 10) * 10;
-
-                //Console.WriteLine($"coordinates.x:{coordinates.X}, coordinates.y:{coordinates.Y}");
-                //Console.WriteLine($"iWidth:{iWidth}, iHeight:{iHeight}");
-                //Console.WriteLine($"xPercent:{xPercent}, yPercent:{yPercent}");
-                //Console.WriteLine($"armaX:{armaX}, armaY:{armaY}");
-                //Console.WriteLine($"roundedArmaX:{roundedArmaX}, roundedArmaY:{roundedArmaY}");
-
-                CoordHeight foundCoord = coordList.Find(item => item.x == armaX && item.y == armaY);
+                CoordHeight foundCoord = getArmaCoords(coordinates, image);
                 Console.WriteLine(foundCoord.toString());
 
-                Ellipse ellipse = createEllipse(e.GetPosition(Cnv), isShiftPressed, foundCoord);
-
-                if (isShiftPressed)
+                if (isAltPressed)
                 {
-                    artyCoord = foundCoord;
-                    Console.WriteLine($"Current arty coordinates: {artyCoord.toString()}");
+                    createTriggerEllipse(e.GetPosition(Cnv));
+                }
+                else
+                {
+                    Ellipse ellipse = createMark(e.GetPosition(Cnv), isShiftPressed, foundCoord);
 
-                    Cnv.Children.Remove(artyEllipse);
-                    artyEllipse = ellipse;
+                    if (isShiftPressed)
+                    {
+                        artyCoord = foundCoord;
+                        Console.WriteLine($"Current arty coordinates: {artyCoord.toString()}");
 
-                    clearTargets();
+                        Cnv.Children.Remove(artyEllipse);
+                        artyEllipse = ellipse;
 
-                    // Set main window Arty Coordinates
-                    MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-                    mainWindow.Battery_X.Text = Convert.ToString(artyCoord.x);
-                    mainWindow.Battery_Y.Text = Convert.ToString(artyCoord.y);
-                    mainWindow.Battery_Alt.Text = Convert.ToString(artyCoord.height);
+                        clearTargets();
 
+                        // Set main window Arty Coordinates
+                        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                        mainWindow.Battery_X.Text = Convert.ToString(artyCoord.x);
+                        mainWindow.Battery_Y.Text = Convert.ToString(artyCoord.y);
+                        mainWindow.Battery_Alt.Text = Convert.ToString(artyCoord.height);
+
+                    }
                 }
             }
         }
 
-        private Ellipse createEllipse(Point coords, bool isShiftPressed, CoordHeight foundCoord)
+        private CoordHeight getArmaCoords(Point coordinates, Image image)
         {
-            Ellipse ellipse = new Ellipse();
+            double iWidth = image.Width;
+            double iHeight = image.Height;
 
-            const double ellipseSize = 0.5;
-            ellipse.Fill = isShiftPressed ? friendlyBrush : targetBrush;
-            ellipse.Stroke = isShiftPressed ? friendlyBrush : targetBrush;
-            ellipse.StrokeThickness = 0.1;
-            ellipse.Opacity = 0.75;
+            double xPercent = coordinates.X / iWidth;
+            double yPercent = (iHeight - coordinates.Y) / iHeight;
 
-            ellipse.Width = ellipseSize;
-            ellipse.Height = ellipseSize;
+            double armaX = Math.Round(coordList[coordList.Count - 1].x * xPercent);
+            double armaY = Math.Round(coordList[coordList.Count - 1].x * yPercent);
 
-            Cnv.Children.Add(ellipse);
+            double roundedArmaX = Math.Round(armaX / 10) * 10;
+            double roundedArmaY = Math.Round(armaY / 10) * 10;
 
-            Canvas.SetLeft(ellipse, coords.X - (ellipseSize / 2));
-            Canvas.SetTop(ellipse, coords.Y - (ellipseSize / 2));
+            //Console.WriteLine($"coordinates.x:{coordinates.X}, coordinates.y:{coordinates.Y}");
+            //Console.WriteLine($"iWidth:{iWidth}, iHeight:{iHeight}");
+            //Console.WriteLine($"xPercent:{xPercent}, yPercent:{yPercent}");
+            //Console.WriteLine($"armaX:{armaX}, armaY:{armaY}");
+            //Console.WriteLine($"roundedArmaX:{roundedArmaX}, roundedArmaY:{roundedArmaY}");
+
+            CoordHeight foundCoord = coordList.Find(item => item.x == armaX && item.y == armaY);
+            return foundCoord;
+        }
+
+        private Ellipse createMark(Point coords, bool isShiftPressed, CoordHeight foundCoord)
+        {
+            Ellipse ellipse = createEllipse(coords, 0.5, isShiftPressed ? friendlyBrush : targetBrush, 0.75);
 
             ellipse.MouseEnter += (object sender, MouseEventArgs e) =>
             {
@@ -206,6 +206,36 @@ namespace A3_Arty_Calc
             return ellipse;
         }
 
+        private Ellipse createTriggerEllipse(Point coords)
+        {
+            Ellipse ellipse = createEllipse(coords, 30, triggerBrush, 0.25);
+
+            if (triggerEllipse != null) Cnv.Children.Remove(triggerEllipse);
+            triggerEllipse = ellipse;
+
+            return ellipse;
+        }
+
+        private Ellipse createEllipse(Point coords, double size, Brush brush, double opacity)
+        {
+            Ellipse ellipse = new Ellipse();
+
+            ellipse.Fill = brush;
+            ellipse.Stroke = brush;
+            ellipse.StrokeThickness = 0.1;
+            ellipse.Opacity = opacity;
+
+            ellipse.Width = size;
+            ellipse.Height = size;
+
+            Cnv.Children.Add(ellipse);
+
+            Canvas.SetLeft(ellipse, coords.X - (size / 2));
+            Canvas.SetTop(ellipse, coords.Y - (size / 2));
+
+            return ellipse;
+        }
+
         private void ClearPoints_Button_Click(object sender, RoutedEventArgs e)
         {
             IEnumerable<Ellipse> collection = Cnv.Children.OfType<Ellipse>();
@@ -224,7 +254,7 @@ namespace A3_Arty_Calc
 
             for (int i = ellipseArr.Count() - 1; i >= 0; i--)
             {
-                if (ellipseArr[i] != artyEllipse)
+                if (ellipseArr[i] != artyEllipse && ellipseArr[i] != triggerEllipse)
                 {
                     Cnv.Children.Remove(ellipseArr[i]);
                 }
@@ -267,7 +297,7 @@ namespace A3_Arty_Calc
                 Point p = Mouse.GetPosition(Cnv);
                 HitTestResult hitTestResult = VisualTreeHelper.HitTest(Cnv, p);
                 Ellipse ellipseToDelete = hitTestResult.VisualHit as Ellipse;
-                if (ellipseToDelete == null)
+                if (ellipseToDelete == null || ellipseToDelete == triggerEllipse)
                     return;
 
                 Cnv.Children.Remove(ellipseToDelete);
