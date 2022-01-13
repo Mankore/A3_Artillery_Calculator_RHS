@@ -58,71 +58,7 @@ namespace A3_Arty_Calc
         {
             return y - x;
         }
-        /*
-        static public (double, double, double) getAngleSolutionForRange(double zeroRange, double muzzleVelocity, double altDiff, Artillery artillery)
-        {
-            double zeroAngle = 0.0f;
-            double deltaT = artillery.simulationStep;
-            double tof = 0.0f;
-            double exitAngle = 0.0f;
-            double minAngle = artillery.minAngle;
-            double maxAngle = artillery.maxAngle;
 
-            for (int i = 0; i < 20; i++)
-            {
-                double lx = 0.0f;
-                double ly = 0.0f;
-
-                //double px = artillery.muzzleLength * Math.Cos(zeroAngle);
-                double px = 0;
-                double py = artillery.muzzleLength * Math.Cos(zeroAngle) - altDiff / 100.0f;
-
-                double gx = 0;
-                double gy = -gravity;
-
-                double vx = Math.Cos(zeroAngle) * muzzleVelocity;
-                double vy = Math.Sin(zeroAngle) * muzzleVelocity;
-
-                tof = 0.0f;
-                double v = 0.0f;
-
-                while (px < zeroRange && tof <= 100.0f)
-                {
-                    lx = px;
-                    ly = py;
-
-                    v = Math.Sqrt(vx * vx + vy * vy);
-
-                    double ax = vx * v * artillery.airFriction;
-                    double ay = vy * v * artillery.airFriction;
-                    ax += gx;
-                    ay += gy;
-
-                    px += vx * deltaT * 0.5;
-                    py += vy * deltaT * 0.5;
-                    vx += ax * deltaT;
-                    vy += ay * deltaT;
-                    px += vx * deltaT * 0.5;
-                    py += vy * deltaT * 0.5;
-
-                    tof += deltaT;
-                    exitAngle = Math.Atan2(vy, vx);
-                    //Console.WriteLine($"tof: {tof}, px:{px}, py:{py}, vx{vx}, vy:{vy}");
-                }
-
-                double y = ly + (zeroRange - lx) * (py - ly) / (px - lx);
-                double offset = -Math.Atan(y / zeroRange);
-                zeroAngle += offset;
-
-                if (Math.Abs(offset) < 0.00001f)
-                {
-                    break;
-                }
-            }
-
-            return (zeroAngle, tof, exitAngle);
-        }
-        */
         static public (double, double, double, double, double) getAngleSolutionForRange2(double zeroRange, double muzzleVelocity, double altDiff, Artillery artillery, ShellType shell, bool isTopDown)
         {
             double angleTolerance = toRadians(0.05);
@@ -212,11 +148,11 @@ namespace A3_Arty_Calc
                 angle = Math.Atan2(speed.Z, speed.Y);
                 //Console.WriteLine($"py: {currentPos.Z:F3}, px:{currentPos.Y:F3}, tof:{tof:F3}, V:{speed:F3}, Vx: {speed.Y:F3}, Vy: {speed.Z:F3}, Angle: {toDegrees(angle):F6}, changeInVelocity: {changeInVelocity}");
             }
-            //Console.WriteLine($"px:{currentPos.Y:F3}, tof:{tof:F3}, V:{speed:F3}, exitAngle:{toDegrees(angle):F3}, py:{currentPos.Z:F3}");
             double vyRatio = (altDiff - currentPos.Z) / speed.Z;
-            //Console.WriteLine($"altDiff:{altDiff:f3}, py:{currentPos.Z:f3}, vy:{speed.Z:f3}");
             double pxCorrection = Math.Abs(speed.Y * vyRatio);
             currentPos.Y -= pxCorrection;
+            //Console.WriteLine($"px:{currentPos.Y:F3}, tof:{tof:F3}, V:{speed:F3}, exitAngle:{toDegrees(angle):F3}, py:{currentPos.Z:F3}");
+            //Console.WriteLine($"altDiff:{altDiff:f3}, py:{currentPos.Z:f3}, vy:{speed.Z:f3}");
             //Console.WriteLine($"vyRatio:{vyRatio:F3}, pxCorrection:{pxCorrection:F3}, pxAfter:{currentPos.Y:F3}, apex:{apex:f3}");
 
             if (apex < altDiff)

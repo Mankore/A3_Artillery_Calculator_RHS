@@ -64,8 +64,12 @@ namespace A3_Arty_Calc
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            bool isShiftPressed = Keyboard.IsKeyDown(Key.LeftShift);
+            bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl);
+            bool isAltPressed = Keyboard.IsKeyDown(Key.LeftAlt);
             Image image = e.OriginalSource as Image;
-            if (image != null && e.ClickCount >= 2)
+            //if (image != null && e.ClickCount >= 2)
+            if (image != null && (isCtrlPressed || isShiftPressed))
             {
                 Point coordinates = e.GetPosition(image);
 
@@ -87,11 +91,8 @@ namespace A3_Arty_Calc
                 //Console.WriteLine($"armaX:{armaX}, armaY:{armaY}");
                 //Console.WriteLine($"roundedArmaX:{roundedArmaX}, roundedArmaY:{roundedArmaY}");
 
-                //CoordHeight foundCoord = coordList.Find(item => item.x == roundedArmaX && item.y == roundedArmaY);
                 CoordHeight foundCoord = coordList.Find(item => item.x == armaX && item.y == armaY);
                 Console.WriteLine(foundCoord.toString());
-
-                bool isShiftPressed = Keyboard.IsKeyDown(Key.LeftShift);
 
                 Ellipse ellipse = createEllipse(e.GetPosition(Cnv), isShiftPressed, foundCoord);
 
@@ -230,23 +231,27 @@ namespace A3_Arty_Calc
             }
         }
 
-        private double checkIfFlatAround(CoordHeight coord)
+        private double checkIfFlatAround(CoordHeight coord, bool isStrict = false)
         {
             double midDeviation = 999;
             double altSumm = 0;
-            double pointHeight = coord.height;
+            CoordHeight latestCoord = coordList[coordList.Count - 1];
 
-            for (int i = coord.x - 1; i < coord.x + 2; i++)
+            if (coord.x > 0 && coord.y > 0 && coord.x + 2 <= latestCoord.x && coord.y + 2 <= latestCoord.y)
             {
-                for (int j = coord.y - 1; j < coord.y + 2; j++)
+                for (int i = coord.x - 1; i < coord.x + 2; i++)
                 {
-                    CoordHeight foundCoord = coordList.Find(item => item.x == i && item.y == j);
-                    altSumm += Math.Abs(pointHeight - foundCoord.height);
+                    for (int j = coord.y - 1; j < coord.y + 2; j++)
+                    {
+                        CoordHeight foundCoord = coordList.Find(item => item.x == i && item.y == j);
+                        altSumm += Math.Abs(coord.height - foundCoord.height);
+                        if (isStrict && altSumm > 0) return 999;
+                    }
                 }
             }
 
             midDeviation = altSumm / 8;
-            Console.WriteLine($"midDeviation: {midDeviation}");
+            //Console.WriteLine($"midDeviation: {midDeviation}");
             return midDeviation;
         }
 
@@ -268,6 +273,23 @@ namespace A3_Arty_Calc
                 Cnv.Children.Remove(ellipseToDelete);
                 e.Handled = true;
             }
+        }
+
+        private void findFlatCoordinates()
+        {
+            foreach (CoordHeight item in coordList)
+            {
+                if (item.height >= 0)
+                {
+                    double deviation = checkIfFlatAround(item, true);
+                    if (deviation < 0.02) Console.WriteLine($"Coords:{item.toString()}, dev: {deviation}");
+                }
+            }
+        }
+
+        private void FindFlat_Button_Click(object sender, RoutedEventArgs e)
+        {
+            findFlatCoordinates();
         }
     }
 }
