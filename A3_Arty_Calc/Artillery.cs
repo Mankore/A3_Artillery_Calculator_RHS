@@ -19,6 +19,7 @@ namespace A3_Arty_Calc
         public abstract bool isAirFriction { get; }
         public abstract Vector3D getBaseProjectileSpawnPoint(double angle);
         public abstract AngleSolution[] angleSolutions { get; }
+        public abstract double angleAdjustment { get; }
     }
 
     class Art_2S1_Direct : Artillery
@@ -87,7 +88,9 @@ namespace A3_Arty_Calc
 
         public override Vector3D getBaseProjectileSpawnPoint(double angle)
         {
-            return new Vector3D(0, -11.5, Math.Sin(angle) * 8.6 + 18.6);
+            //return new Vector3D(0, -11.5, Math.Sin(angle) * 8.6 + 18.6);
+            //return new Vector3D(0, -Math.Cos(angle)*11.198, Math.Sin(angle)* 11.198 + 6.839);
+            return new Vector3D(0, -Math.Cos(angle) * 11.198, Math.Sin(angle) * 16.49 + 5.03);
         }
 
         public override AngleSolution[] angleSolutions
@@ -96,20 +99,28 @@ namespace A3_Arty_Calc
             {
                 return new AngleSolution[]
                 {
-                    new AngleSolution(5, 0, 4.3, 16.6, 11.8),
-                    new AngleSolution(10, 0, 0, 11.8, 15.3),
-                    new AngleSolution(15, 1.6, 3.6, 6.7, 19),
-                    new AngleSolution(20, 0, 2.8, 1.3, 21.6),
-                    new AngleSolution(25, 0.3, 8, 9.9, 18.1),
-                    new AngleSolution(30, 2.3, 10.1, 0.1, 23.9),
-                    new AngleSolution(35, 0, 12.7, 1.9, 23.2),
-                    new AngleSolution(40, 1.8, 15.7, 1, 23.5),
-                    new AngleSolution(45, 0, 18.2, 3.2, 21.4),
-                    new AngleSolution(50, 0.5, 21.3, 4.8, 19.3),
-                    new AngleSolution(55, 1.2, 24, 4.7, 17.5),
-                    new AngleSolution(60, 5.5, 24.9, 3.5, 17.6),
-                    new AngleSolution(65, 22, 24, 2.3, 17.6)
+                    //new AngleSolution(5, 0, 4.3, 16.6, 11.8),
+                    //new AngleSolution(10, 0, 0, 11.8, 15.3),
+                    //new AngleSolution(15, 1.6, 3.6, 6.7, 19),
+                    //new AngleSolution(20, 0, 2.8, 1.3, 21.6),
+                    //new AngleSolution(25, 0.3, 8, 9.9, 18.1),
+                    //new AngleSolution(30, 2.3, 10.1, 0.1, 23.9),
+                    //new AngleSolution(35, 0, 12.7, 1.9, 23.2),
+                    //new AngleSolution(40, 1.8, 15.7, 1, 23.5),
+                    //new AngleSolution(45, 0, 18.2, 3.2, 21.4),
+                    //new AngleSolution(50, 0.5, 21.3, 4.8, 19.3),
+                    //new AngleSolution(55, 1.2, 24, 4.7, 17.5),
+                    //new AngleSolution(60, 5.5, 24.9, 3.5, 17.6),
+                    //new AngleSolution(65, 22, 24, 2.3, 17.6)
                 };
+            }
+        }
+
+        public override double angleAdjustment
+        {
+            get
+            {
+                return -0.135;
             }
         }
     }
@@ -188,6 +199,14 @@ namespace A3_Arty_Calc
                 return null;
             }
         }
+
+        public override double angleAdjustment
+        {
+            get
+            {
+                return 0;
+            }
+        }
     }
 
     class Art_M109A6 : Artillery
@@ -261,6 +280,13 @@ namespace A3_Arty_Calc
             get
             {
                 return null;
+            }
+        }
+        public override double angleAdjustment
+        {
+            get
+            {
+                return 0;
             }
         }
     }
@@ -338,6 +364,14 @@ namespace A3_Arty_Calc
             get
             {
                 return null;
+            }
+        }
+
+        public override double angleAdjustment
+        {
+            get
+            {
+                return 0;
             }
         }
     }

@@ -70,7 +70,7 @@ namespace A3_Arty_Calc
             bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl);
             bool isAltPressed = Keyboard.IsKeyDown(Key.LeftAlt);
             Image image = e.OriginalSource as Image;
-            
+
             if (image != null && (isCtrlPressed || isShiftPressed || isAltPressed))
             {
                 Point coordinates = e.GetPosition(image);
@@ -101,7 +101,8 @@ namespace A3_Arty_Calc
                         mainWindow.Battery_Y.Text = Convert.ToString(artyCoord.y);
                         mainWindow.Battery_Alt.Text = Convert.ToString(artyCoord.height);
 
-                    } else
+                    }
+                    else
                     {
                         // Set main Window Target coordinates
                         mainWindow.Target_X.Text = Convert.ToString(foundCoord.x);
@@ -177,6 +178,12 @@ namespace A3_Arty_Calc
                 double yTarget = foundCoord.y;
                 double altTarget = foundCoord.height;
 
+                double angleCorrection = 0;
+                if (!String.IsNullOrEmpty(mainWindow.AngleCorrection.Text))
+                {
+                    angleCorrection = double.Parse(mainWindow.AngleCorrection.Text);
+                }
+
                 Console.WriteLine($"\nxBattery:{xBattery}, yBattery:{yBattery}, xTarget:{xTarget},yTarget:{yTarget}\n");
 
                 string Charge = mainWindow.Charge_Selector.Text;
@@ -198,7 +205,8 @@ namespace A3_Arty_Calc
                 double tdElevation, tdTof, tdExitAngle, tdApex, tdDist;
 
                 (tdElevation, tdTof, tdExitAngle, tdApex, tdDist) = Logic.getAngleSolutionForRange2(range, initSpeed, altDiff, Arty, shell, true);
-
+                elevation += angleCorrection;
+                tdElevation += angleCorrection;
                 ttText = $"Arty: {Arty.Name}, Shell: {shell.name}, fMode: {fMode.name}\n" +
                     $"Elevation: {elevation:f3}, Tof: {tof:f3}, eAngle: {exitAngle:f3}\n" +
                     $"apex: {apex:f3}, range: {range:f3}, targetHeight: {altTarget}\n" +

@@ -113,6 +113,9 @@ namespace A3_Arty_Calc
                 return (0, 0, exitAngle, apex, px);
             }
 
+            currentAngle += artillery.angleAdjustment;
+
+
             return (currentAngle, tof, exitAngle, apex, px);
         }
 
@@ -135,7 +138,8 @@ namespace A3_Arty_Calc
                 if (artillery.isAirFriction)
                 {
                     changeInVelocity = speed.Length * speed * shell.airFriction + gravV;
-                } else
+                }
+                else
                 {
                     changeInVelocity = gravV;
                 }
@@ -173,7 +177,7 @@ namespace A3_Arty_Calc
                 double degAngle = toDegrees(angle);
                 foreach (AngleSolution solution in artillery.angleSolutions)
                 {
-                    if( degAngle < solution.angle + 2.5)
+                    if (degAngle < solution.angle + 2.5)
                     {
                         vector = new Vector3D(0, -(Math.Cos(angle) * solution.Xmultiplier + solution.Xoffset), Math.Sin(angle) * solution.Ymultiplier + solution.Yoffset);
                         break;

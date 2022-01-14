@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace A3_Arty_Calc
 {
@@ -89,7 +90,11 @@ namespace A3_Arty_Calc
             ShellType shell = Array.Find(Arty.shellTypes, item => item.name == Shell);
             initSpeed = shell.initSpeed * fMode.artilleryCharge;
 
-            //Logic.simulateForAngle2(initSpeed, Logic.toRadians(13.1), Arty, shell, altDiff);
+            double angleCorrection = 0;
+            if (!String.IsNullOrEmpty(AngleCorrection.Text))
+            {
+                angleCorrection = double.Parse(AngleCorrection.Text, CultureInfo.InvariantCulture);
+            }
 
             (elevation, tof, exitAngle, apex, dist) = Logic.getAngleSolutionForRange2(range, initSpeed, altDiff, Arty, shell, isTopDown);
 
@@ -97,6 +102,7 @@ namespace A3_Arty_Calc
             double dispersionDistance = 0;
             double filler = 0;
             (dispersionDistance, filler, filler, filler) = Logic.simulateForAngle2(initSpeed, Logic.toRadians(dispersionElevation), Arty, shell, altDiff);
+            elevation += angleCorrection;
             SolutionTextBox.Text = $"Solution for {Charge} of {Arty.Name}\nElevation: {elevation:F3}, Bearing: {bearing:F3}\nRange: {range:F3}, ToF: {tof:F2}, exitAngle: {exitAngle:F2}\nDistnc: {dist:f3}, apex: {apex:F3}\n+0.2 Elevation = Range: {dispersionDistance - range:f3}\n-0.07 Elevation = {elevation - 0.07:f3} ";
 
             string coordinatesText = $"{Battery_X.Text},{Battery_Y.Text},{Battery_Alt.Text}/{Target_X.Text},{Target_Y.Text},{Target_Alt.Text}/{Charge}";
@@ -136,14 +142,24 @@ namespace A3_Arty_Calc
                     Charge_Selector.SelectedItem = item;
                 }
             }
-            
-            //Charge_Selector.SelectedItem = Charge_Selector.Items.OfType<ComboBoxItem>().FirstOrDefault(x => x.Content.ToString() == Charge);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            TextBox textBox = sender as TextBox;
+            Regex regex = new Regex("^[0-9]{0,4}$");
+            string fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
+
+            e.Handled = !regex.IsMatch(fullText);
+        }
+
+        private void CorrectionValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            Regex regex = new Regex("^-?[0-9]*[,]?[0-9]*$");
+            string fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
+
+            e.Handled = !regex.IsMatch(fullText);
         }
 
         private void Compute_Table_Click(object sender, RoutedEventArgs e)
@@ -172,10 +188,10 @@ namespace A3_Arty_Calc
 
             for (double i = Arty.minAngle; i < Arty.maxAngle; i += angleStep)
             {
-                //if (Math.Round(i, 1) % 5 != 0)
-                //{
-                //    continue;
-                //}
+                if (Math.Round(i, 1) % 5 != 0)
+                {
+                    continue;
+                }
 
                 double range, tof, exitAngle, apex;
                 if (considerAltitude && !isEmptyInputCondition)

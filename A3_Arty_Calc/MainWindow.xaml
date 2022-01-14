@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:A3_Arty_Calc"
         mc:Ignorable="d"
-        Title="RHS Artillery Calculator" Height="500" Width="800">
+        Title="RHS Artillery Calculator" Height="542" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
@@ -18,10 +18,10 @@
         <Label Grid.ColumnSpan="2" Content="Target Y" HorizontalAlignment="Left" Margin="121,65,0,0" VerticalAlignment="Top" Width="92" Height="25"/>
         <Label Grid.ColumnSpan="2" Content="Target Altitude" HorizontalAlignment="Left" Margin="231,65,0,0" VerticalAlignment="Top" Width="92" Height="25"/>
         <Button Grid.ColumnSpan="2" Content="Compute" HorizontalAlignment="Left" Height="23" Margin="156,125,0,0" VerticalAlignment="Top" Width="105" Click="Compute_Button_Click"/>
-        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="345,87,0,0" VerticalAlignment="Top" Width="108" Name="Charge_Selector">
+        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="345,90,0,0" VerticalAlignment="Top" Width="108" Name="Charge_Selector">
 
         </ComboBox>
-        <Label Grid.ColumnSpan="2" Content="Select Charge" HorizontalAlignment="Left" Margin="345,62,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
+        <Label Grid.ColumnSpan="2" Content="Select Charge" HorizontalAlignment="Left" Margin="345,65,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="151" Margin="476,12,0,0" TextWrapping="Wrap" Text="Solution" VerticalAlignment="Top" Width="306" AcceptsReturn="True" Name="SolutionTextBox" IsReadOnly="True"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" Name="Battery_X" PreviewTextInput="NumberValidationTextBox"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="121,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" x:Name="Battery_Y" PreviewTextInput="NumberValidationTextBox"/>
@@ -29,8 +29,8 @@
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" x:Name="Target_X" PreviewTextInput="NumberValidationTextBox"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="121,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" x:Name="Target_Y" PreviewTextInput="NumberValidationTextBox"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="231,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" x:Name="Target_Alt" PreviewTextInput="NumberValidationTextBox"/>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="258" Margin="476,200,0,0" VerticalAlignment="Top" Width="306"/>
-        <Grid Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="253" VerticalAlignment="Top" Width="296" Margin="486,205,0,0" ClipToBounds="True">
+        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="297" Margin="476,200,0,0" VerticalAlignment="Top" Width="306"/>
+        <Grid Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="292" VerticalAlignment="Top" Width="296" Margin="486,205,0,0" ClipToBounds="True">
             <ItemsControl Name="icSolutionLog" Margin="0,0,10,10">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -47,7 +47,7 @@
             </ItemsControl>
         </Grid>
         <Label Grid.ColumnSpan="2" Content="Coordinates Log:" HorizontalAlignment="Left" Margin="476,169,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.491,0.423"/>
-        <DataGrid Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="225" Margin="15,233,0,0" VerticalAlignment="Top" Width="438" AutoGenerateColumns="False" Name="ArtilleryTableGrid">
+        <DataGrid Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="225" Margin="16,272,0,0" VerticalAlignment="Top" Width="438" AutoGenerateColumns="False" Name="ArtilleryTableGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Angle" Binding="{Binding Angle}" FontFamily="Arial" Width="*"/>
                 <DataGridTextColumn Header="Range" Binding="{Binding Range}" FontFamily="Arial" Width="*"/>
@@ -56,16 +56,16 @@
                 <DataGridTextColumn Header="Apex" Binding="{Binding Apex}" FontFamily="Arial" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Grid.ColumnSpan="2" Content="Range Table for Charge" HorizontalAlignment="Left" Margin="15,205,0,0" VerticalAlignment="Top" Width="136"/>
-        <Button Grid.ColumnSpan="2" Content="Compute Table" HorizontalAlignment="Left" Margin="156,208,0,0" VerticalAlignment="Top" Width="105" Click="Compute_Table_Click"/>
-        <CheckBox Grid.ColumnSpan="2" Content="Consider Altitude" HorizontalAlignment="Left" Margin="278,211,0,0" VerticalAlignment="Top" Width="116" IsChecked="False" Name="Altitude_Checkbox"/>
+        <Label Grid.ColumnSpan="2" Content="Range Table for Charge" HorizontalAlignment="Left" Margin="16,244,0,0" VerticalAlignment="Top" Width="136"/>
+        <Button Grid.ColumnSpan="2" Content="Compute Table" HorizontalAlignment="Left" Margin="157,247,0,0" VerticalAlignment="Top" Width="105" Click="Compute_Table_Click"/>
+        <CheckBox Grid.ColumnSpan="2" Content="Consider Altitude" HorizontalAlignment="Left" Margin="279,250,0,0" VerticalAlignment="Top" Width="116" IsChecked="False" Name="Altitude_Checkbox"/>
         <CheckBox Grid.ColumnSpan="2" Content="High Arc Mode" HorizontalAlignment="Left" Margin="15,125,0,0" VerticalAlignment="Top" Width="114" IsChecked="False" Name="High_Arc_Checkbox"/>
         <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="345,140,0,0" VerticalAlignment="Top" Width="108" x:Name="Shell_Selector">
         </ComboBox>
         <Label Grid.ColumnSpan="2" Content="Select Shell" HorizontalAlignment="Left" Margin="345,115,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
-        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="345,35,0,0" VerticalAlignment="Top" Width="108" x:Name="Artillery_Selector" SelectionChanged="Artillery_Selector_SelectionChanged">
+        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="345,37,0,0" VerticalAlignment="Top" Width="108" x:Name="Artillery_Selector" SelectionChanged="Artillery_Selector_SelectionChanged">
         </ComboBox>
-        <Label Grid.ColumnSpan="2" Content="Select Artillery" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
+        <Label Grid.ColumnSpan="2" Content="Select Artillery" HorizontalAlignment="Left" Margin="345,12,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
         <Button Grid.ColumnSpan="2" Content="Open Map" HorizontalAlignment="Left" Height="23" Margin="156,169,0,0" VerticalAlignment="Top" Width="105" Click="Open_Map_Button_Click"/>
         <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,169,0,0" VerticalAlignment="Top" Width="108" x:Name="Map_Selector">
             <ComboBoxItem IsSelected="True">Sahrani</ComboBoxItem>
@@ -75,7 +75,7 @@
             <ComboBoxItem>Al_Rayak</ComboBoxItem>
             <ComboBoxItem>Cherno</ComboBoxItem>
         </ComboBox>
-
-
+        <Label Grid.ColumnSpan="2" Content="Angle Correction" HorizontalAlignment="Left" Margin="345,175,0,0" VerticalAlignment="Top" Width="108" Height="30"/>
+        <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="345,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="108" x:Name="AngleCorrection" PreviewTextInput="CorrectionValidationTextBox"/>
     </Grid>
 </Window>
