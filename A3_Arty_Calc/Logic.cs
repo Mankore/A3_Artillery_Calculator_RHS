@@ -121,7 +121,7 @@ namespace A3_Arty_Calc
 
         static public (double, double, double, double) simulateForAngle2(double muzzleVelocity, double angle, Artillery artillery, ShellType shell, double altDiff = 0)
         {
-            double deltaT = simulationStep;
+            double deltaT = artillery.simulationStep;
             Vector3D speed = new Vector3D(0, Math.Cos(angle) * muzzleVelocity, Math.Sin(angle) * muzzleVelocity);
             Vector3D gravV = new Vector3D(0, 0, -gravity);
             Vector3D currentPos = getVectorBasedOnAngle(angle, artillery);
