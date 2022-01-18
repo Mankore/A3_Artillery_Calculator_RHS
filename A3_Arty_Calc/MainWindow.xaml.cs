@@ -93,7 +93,7 @@ namespace A3_Arty_Calc
             double angleCorrection = 0;
             if (!String.IsNullOrEmpty(AngleCorrection.Text))
             {
-                angleCorrection = double.Parse(AngleCorrection.Text, CultureInfo.InvariantCulture);
+                angleCorrection = double.Parse(AngleCorrection.Text);
             }
 
             (elevation, tof, exitAngle, apex, dist) = Logic.getAngleSolutionForRange2(range, initSpeed, altDiff, Arty, shell, isTopDown);
