@@ -188,10 +188,10 @@ namespace A3_Arty_Calc
 
             for (double i = Arty.minAngle; i < Arty.maxAngle; i += angleStep)
             {
-                if (Math.Round(i, 1) % 5 != 0)
-                {
-                    continue;
-                }
+                //if (Math.Round(i, 1) % 5 != 0)
+                //{
+                //    continue;
+                //}
 
                 double range, tof, exitAngle, apex;
                 if (considerAltitude && !isEmptyInputCondition)
