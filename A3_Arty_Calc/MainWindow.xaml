@@ -67,14 +67,7 @@
         </ComboBox>
         <Label Grid.ColumnSpan="2" Content="Select Artillery" HorizontalAlignment="Left" Margin="345,12,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
         <Button Grid.ColumnSpan="2" Content="Open Map" HorizontalAlignment="Left" Height="23" Margin="156,169,0,0" VerticalAlignment="Top" Width="105" Click="Open_Map_Button_Click"/>
-        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,169,0,0" VerticalAlignment="Top" Width="108" x:Name="Map_Selector">
-            <ComboBoxItem IsSelected="True">Sahrani</ComboBoxItem>
-            <ComboBoxItem>Altis</ComboBoxItem>
-            <ComboBoxItem>Napf</ComboBoxItem>
-            <ComboBoxItem>Virolahti</ComboBoxItem>
-            <ComboBoxItem>Al_Rayak</ComboBoxItem>
-            <ComboBoxItem>Cherno</ComboBoxItem>
-        </ComboBox>
+        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,169,0,0" VerticalAlignment="Top" Width="108" x:Name="Map_Selector"/>
         <Label Grid.ColumnSpan="2" Content="Angle Correction" HorizontalAlignment="Left" Margin="345,175,0,0" VerticalAlignment="Top" Width="108" Height="30"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="345,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="108" x:Name="AngleCorrection" PreviewTextInput="CorrectionValidationTextBox"/>
     </Grid>

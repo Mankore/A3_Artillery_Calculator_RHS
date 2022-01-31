@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.IO;
 
 namespace A3_Arty_Calc
 {
@@ -55,6 +56,13 @@ namespace A3_Arty_Calc
             Array.ForEach(ArtilleryList, item => Artillery_Selector.Items.Add(item.Name));
             Artillery_Selector.SelectedItem = Artillery_Selector.Items[0];
 
+            string[] pdfFiles = Directory.GetFiles(@"coordinates", "*.txt").Select(System.IO.Path.GetFileName).ToArray();
+            foreach (var item in pdfFiles)
+            {
+                Console.WriteLine(item);
+                Map_Selector.Items.Add(item.Replace(".txt", ""));
+            }
+            Map_Selector.SelectedItem = Map_Selector.Items[0];
             //TestLogic.bruteValues(); // To test sin/cos
             //TestLogic.bruteForAngle(TestLogic.trajectories[12]);
         }
