@@ -27,6 +27,7 @@ namespace A3_Arty_Calc
         static Brush friendlyBrush = Brushes.DarkBlue;
         static Brush targetBrush = Brushes.Red;
         static Brush triggerBrush = Brushes.Yellow;
+        int triggerSize;
         public MapWindow()
         {
             InitializeComponent();
@@ -38,6 +39,9 @@ namespace A3_Arty_Calc
             Uri uri = new Uri(path);
             Console.WriteLine(uri);
             BitmapImage bitmap = new BitmapImage(uri);
+
+            this.triggerSize = bitmap.PixelHeight / coordList[coordList.Count - 1].y * 6;
+            Console.WriteLine($"{bitmap.PixelWidth} {bitmap.PixelHeight} {coordList[coordList.Count - 1].y} {coordList[coordList.Count - 1].x} {triggerSize}");
             
             Map_Image.Source = bitmap;
         }
@@ -225,7 +229,8 @@ namespace A3_Arty_Calc
 
         private Ellipse createTriggerEllipse(Point coords)
         {
-            Ellipse ellipse = createEllipse(coords, 29.5, triggerBrush, 0.25);
+            
+            Ellipse ellipse = createEllipse(coords, triggerSize, triggerBrush, 0.25);
             ellipse.IsHitTestVisible = false;
 
             if (triggerEllipse != null) Cnv.Children.Remove(triggerEllipse);
