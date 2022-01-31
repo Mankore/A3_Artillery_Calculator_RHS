@@ -38,6 +38,8 @@ namespace A3_Arty_Calc
             InitializeComponent();
 
             //logItems.Add(new TargetLogItem { CoordLog = "(1676,1691,46) (2296,1888,5)" });
+            logItems.Add(new TargetLogItem { CoordLog = "2450,1900,3/1625,1875,46/Full Charge" });
+            logItems.Add(new TargetLogItem { CoordLog = "2450,1900,3/2015,1375,22/Full Charge" });
             logItems.Add(new TargetLogItem { CoordLog = "1676,1691,46/2296,1888,5/Full Charge" });
             logItems.Add(new TargetLogItem { CoordLog = "2450,1900,3/2032,1304,124/Full Charge" });
             logItems.Add(new TargetLogItem { CoordLog = "2450,1900,3/2248,1652,14/Full Charge" });

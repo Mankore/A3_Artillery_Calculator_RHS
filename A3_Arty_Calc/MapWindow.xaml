@@ -15,6 +15,6 @@
         </local:ZoomBorder>
         <Button Content="Clear All Points" HorizontalAlignment="Left" Margin="638,20,0,0" VerticalAlignment="Top" Width="109" Click="ClearPoints_Button_Click"/>
         <Button Content="Clear Targets" HorizontalAlignment="Left" Margin="638,55,0,0" VerticalAlignment="Top" Width="109" Click="ClearTargets_Button_Click"/>
-        <Button Content="Find Flat Coordinates" HorizontalAlignment="Left" Margin="638,91,0,0" VerticalAlignment="Top" Width="109" Click="FindFlat_Button_Click"/>
+        <!--<Button Content="Find Flat Coordinates" HorizontalAlignment="Left" Margin="638,91,0,0" VerticalAlignment="Top" Width="109" Click="FindFlat_Button_Click"/>-->
     </Grid>
 </Window>

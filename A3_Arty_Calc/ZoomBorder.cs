@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 
 /* 
- * Credti to:
+ * Credit to:
  * https://stackoverflow.com/questions/741956/pan-zoom-image
  */
 
@@ -86,7 +86,7 @@ namespace A3_Arty_Calc
                 var st = GetScaleTransform(child);
                 var tt = GetTranslateTransform(child);
 
-                double zoom = e.Delta > 0 ? .5 : -.5;
+                double zoom = e.Delta > 0 ? 1 : -1;
                 if (!(e.Delta > 0) && (st.ScaleX < .4 || st.ScaleY < .4))
                     return;
 
