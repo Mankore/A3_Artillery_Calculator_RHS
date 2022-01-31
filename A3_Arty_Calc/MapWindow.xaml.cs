@@ -33,9 +33,12 @@ namespace A3_Arty_Calc
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             string SelectedMap = mainWindow.Map_Selector.Text;
             initList(SelectedMap.ToLower() + ".txt");
-            var uri = new Uri("pack://application:,,,/img/" + SelectedMap + "_opt.png");
-            //var uri = new Uri("./img/" + SelectedMap + "_opt.png", UriKind.Relative);
-            var bitmap = new BitmapImage(uri);
+            //var uri = new Uri("pack://application:,,,/img/" + SelectedMap + "_opt.png");
+            var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img", SelectedMap + "_opt.png");
+            Uri uri = new Uri(path);
+            Console.WriteLine(uri);
+            BitmapImage bitmap = new BitmapImage(uri);
+            
             Map_Image.Source = bitmap;
         }
 
