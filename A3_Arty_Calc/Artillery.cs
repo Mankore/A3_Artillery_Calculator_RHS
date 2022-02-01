@@ -88,7 +88,7 @@ namespace A3_Arty_Calc
 
         public override Vector3D getBaseProjectileSpawnPoint(double angle)
         {
-            return new Vector3D(0, Math.Cos(angle)*2.18 + 5, Math.Sin(angle)* 2.18); // Brand new Testing
+            return new Vector3D(0, Math.Cos(angle)*2.18 + 5, Math.Sin(angle)* 2.18);
         }
 
         public override AngleSolution[] angleSolutions

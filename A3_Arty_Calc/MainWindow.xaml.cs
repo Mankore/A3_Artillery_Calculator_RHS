@@ -38,7 +38,6 @@ namespace A3_Arty_Calc
         {
             InitializeComponent();
 
-            //logItems.Add(new TargetLogItem { CoordLog = "(1676,1691,46) (2296,1888,5)" });
             logItems.Add(new TargetLogItem { CoordLog = "2450,1900,3/1625,1875,46/Full Charge" });
             logItems.Add(new TargetLogItem { CoordLog = "2450,1900,3/2015,1375,22/Full Charge" });
             logItems.Add(new TargetLogItem { CoordLog = "1676,1691,46/2296,1888,5/Full Charge" });
@@ -59,12 +58,9 @@ namespace A3_Arty_Calc
             string[] pdfFiles = Directory.GetFiles(@"coordinates", "*.txt").Select(System.IO.Path.GetFileName).ToArray();
             foreach (var item in pdfFiles)
             {
-                Console.WriteLine(item);
                 Map_Selector.Items.Add(item.Replace(".txt", ""));
             }
             Map_Selector.SelectedItem = Map_Selector.Items[0];
-            //TestLogic.bruteValues(); // To test sin/cos
-            //TestLogic.bruteForAngle(TestLogic.trajectories[12]);
         }
 
         private void Compute_Button_Click(object sender, RoutedEventArgs e)

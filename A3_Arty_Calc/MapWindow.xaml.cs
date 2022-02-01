@@ -35,8 +35,6 @@ namespace A3_Arty_Calc
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             string SelectedMap = mainWindow.Map_Selector.Text;
 
-            //initList(SelectedMap.ToLower() + ".txt");
-
             var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img", SelectedMap + "_opt.png");
             Uri uri = new Uri(path);
             BitmapImage bitmap = new BitmapImage(uri);
@@ -147,15 +145,6 @@ namespace A3_Arty_Calc
             double armaX = Math.Round(coordList[coordList.Count - 1].x * xPercent);
             double armaY = Math.Round(coordList[coordList.Count - 1].x * yPercent);
 
-            double roundedArmaX = Math.Round(armaX / 10) * 10;
-            double roundedArmaY = Math.Round(armaY / 10) * 10;
-
-            //Console.WriteLine($"coordinates.x:{coordinates.X}, coordinates.y:{coordinates.Y}");
-            //Console.WriteLine($"iWidth:{iWidth}, iHeight:{iHeight}");
-            //Console.WriteLine($"xPercent:{xPercent}, yPercent:{yPercent}");
-            //Console.WriteLine($"armaX:{armaX}, armaY:{armaY}");
-            //Console.WriteLine($"roundedArmaX:{roundedArmaX}, roundedArmaY:{roundedArmaY}");
-
             CoordHeight foundCoord = coordList.Find(item => item.x == armaX && item.y == armaY);
             return foundCoord;
         }
@@ -163,11 +152,6 @@ namespace A3_Arty_Calc
         private Ellipse createMark(Point coords, bool isShiftPressed, CoordHeight foundCoord)
         {
             Ellipse ellipse = createEllipse(coords, 0.5, isShiftPressed ? friendlyBrush : targetBrush, 0.75);
-
-            ellipse.MouseEnter += (object sender, MouseEventArgs e) =>
-            {
-                //Console.WriteLine("Enter");
-            };
 
             ellipse.MouseLeave += (object sender, MouseEventArgs e) =>
             {
@@ -300,6 +284,26 @@ namespace A3_Arty_Calc
             }
         }
 
+        private void ClearTargets_Button_Click(object sender, RoutedEventArgs e)
+        {
+            clearTargets();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                Point p = Mouse.GetPosition(Cnv);
+                HitTestResult hitTestResult = VisualTreeHelper.HitTest(Cnv, p);
+                Ellipse ellipseToDelete = hitTestResult.VisualHit as Ellipse;
+                if (ellipseToDelete == null || ellipseToDelete == triggerEllipse)
+                    return;
+
+                Cnv.Children.Remove(ellipseToDelete);
+                e.Handled = true;
+            }
+        }
+
         private double checkIfFlatAround(CoordHeight coord, bool isStrict = false)
         {
             double midDeviation = 999;
@@ -322,26 +326,6 @@ namespace A3_Arty_Calc
             midDeviation = altSumm / 8;
             //Console.WriteLine($"midDeviation: {midDeviation}");
             return midDeviation;
-        }
-
-        private void ClearTargets_Button_Click(object sender, RoutedEventArgs e)
-        {
-            clearTargets();
-        }
-
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Delete)
-            {
-                Point p = Mouse.GetPosition(Cnv);
-                HitTestResult hitTestResult = VisualTreeHelper.HitTest(Cnv, p);
-                Ellipse ellipseToDelete = hitTestResult.VisualHit as Ellipse;
-                if (ellipseToDelete == null || ellipseToDelete == triggerEllipse)
-                    return;
-
-                Cnv.Children.Remove(ellipseToDelete);
-                e.Handled = true;
-            }
         }
 
         private void findFlatCoordinates()

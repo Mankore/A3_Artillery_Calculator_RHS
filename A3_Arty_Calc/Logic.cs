@@ -31,7 +31,6 @@ namespace A3_Arty_Calc
             double valY = Math.Pow(y1 - y2, 2);
             double valZ = Math.Pow(z1 - z2, 2);
             double range = 10 * Math.Sqrt(valX + valY + valZ);
-            Console.WriteLine($"{x1} {y1} {x2} {y2} {range}");
             return range;
         }
 
@@ -98,11 +97,9 @@ namespace A3_Arty_Calc
 
                 if (Math.Abs(maxAngle - minAngle) < angleTolerance)
                 {
-                    //Console.WriteLine($"angleTolerance reached, attempts:{attemptCount}");
                     break;
                 }
 
-                //Console.WriteLine($"currentAngle:{currentAngle:f3}, maxAngle: {maxAngle:f3}, minAngle: {minAngle:f3}\n");
                 ++attemptCount;
             }
 
@@ -135,14 +132,8 @@ namespace A3_Arty_Calc
             while (currentPos.Z >= altDiff || speed.Z > 0)
             {
                 currentPos += speed * deltaT;
-                if (artillery.isAirFriction)
-                {
-                    changeInVelocity = speed.Length * speed * shell.airFriction + gravV;
-                }
-                else
-                {
-                    changeInVelocity = gravV;
-                }
+                changeInVelocity = artillery.isAirFriction ? speed.Length * speed * shell.airFriction + gravV : gravV;
+
                 speed += changeInVelocity * deltaT;
                 tof += deltaT;
 
@@ -150,14 +141,10 @@ namespace A3_Arty_Calc
 
                 tof += deltaT;
                 angle = Math.Atan2(speed.Z, speed.Y);
-                //Console.WriteLine($"py: {currentPos.Z:F3}, px:{currentPos.Y:F3}, tof:{tof:F3}, V:{speed:F3}, Vx: {speed.Y:F3}, Vy: {speed.Z:F3}, Angle: {toDegrees(angle):F6}, changeInVelocity: {changeInVelocity}");
             }
             double vyRatio = (altDiff - currentPos.Z) / speed.Z;
             double pxCorrection = Math.Abs(speed.Y * vyRatio);
             currentPos.Y -= pxCorrection;
-            //Console.WriteLine($"px:{currentPos.Y:F3}, tof:{tof:F3}, V:{speed:F3}, exitAngle:{toDegrees(angle):F3}, py:{currentPos.Z:F3}");
-            //Console.WriteLine($"altDiff:{altDiff:f3}, py:{currentPos.Z:f3}, vy:{speed.Z:f3}");
-            //Console.WriteLine($"vyRatio:{vyRatio:F3}, pxCorrection:{pxCorrection:F3}, pxAfter:{currentPos.Y:F3}, apex:{apex:f3}");
 
             if (apex < altDiff)
             {
@@ -184,7 +171,6 @@ namespace A3_Arty_Calc
                     }
                 }
             }
-            //Console.WriteLine($"Returned vector: {vector}");
             return vector;
         }
     }
