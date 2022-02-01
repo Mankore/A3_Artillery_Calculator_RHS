@@ -27,13 +27,13 @@ Could be used for any artillery type, since the algorithm works for any airFrict
 ### Map Window Controls
 
 **Scroll Wheel**: Zoom\
-**Hold LMB**: Pan
-**RMB Click**: Reset Pan and Zoom
+**Hold LMB**: Pan\
+**RMB Click**: Reset Pan and Zoom\
 
-**Shift + LMB Click**: Place Battery Coordinates
-**Ctrl + LMB Click**: Place Target Coordinates
-**Alt + LMB Click**: Place 500m Radius Trigger
-**Delete + Mouse Hover** over Battery/Target Coordinates: Remove Marker
+**Shift + LMB Click**: Place Battery Coordinates\
+**Ctrl + LMB Click**: Place Target Coordinates\
+**Alt + LMB Click**: Place 500m Radius Trigger\
+**Delete + Mouse Hover** over Battery/Target Coordinates: Remove Marker\
 
 ## About Maps
 
