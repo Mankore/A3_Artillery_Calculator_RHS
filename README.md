@@ -43,6 +43,6 @@ You can add your own maps, you need to do the following:
 - Place it in ./coordinates folder with preferable map name
 - Place mapName_opt.png in ./img folder
 
-To export ArmA 3 Coordinates and Altitude: [Beowulf.ArmaTerrainExport](https://github.com/Keithenneu/Beowulf.ArmaTerrainExport)
+To export ArmA 3 Coordinates and Altitude: [Beowulf.ArmaTerrainExport](https://github.com/Keithenneu/Beowulf.ArmaTerrainExport)\
 To export ArmA 3 Map SVG: [diag_exportTerrainSVG](https://community.bistudio.com/wiki/diag_exportTerrainSVG)
 
