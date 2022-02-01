@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:A3_Arty_Calc"
+        ResizeMode="NoResize"
         mc:Ignorable="d"
         Title="RHS Artillery Calculator" Height="542" Width="800">
     <Grid>

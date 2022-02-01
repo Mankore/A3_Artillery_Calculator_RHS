@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
         xmlns:local="clr-namespace:A3_Arty_Calc"
+        ResizeMode="NoResize"
         KeyDown="Window_KeyDown"
         Title="Map" Height="650" Width="800">
     <Grid>
