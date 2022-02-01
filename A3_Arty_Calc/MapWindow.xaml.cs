@@ -36,11 +36,11 @@ namespace A3_Arty_Calc
             string SelectedMap = mainWindow.Map_Selector.Text;
 
             //initList(SelectedMap.ToLower() + ".txt");
-            
+
             var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img", SelectedMap + "_opt.png");
             Uri uri = new Uri(path);
             BitmapImage bitmap = new BitmapImage(uri);
-            
+
             Map_Image.Source = bitmap;
             double pixelHeight = Map_Image.Height;
 
@@ -52,7 +52,10 @@ namespace A3_Arty_Calc
         private void initList(double mapPixelHeight, string filename = "sahrani.txt")
         {
             if (coordList.Count != 0) coordList.Clear();
-            foreach (string line in System.IO.File.ReadLines("./coordinates/" + filename))
+            IEnumerable<string> linesArr = System.IO.File.ReadLines("./coordinates/" + filename);
+            double lineCount = 0;
+            double totalLines = linesArr.Count();
+            foreach (string line in linesArr)
             {
                 string[] data = line.Split(' ');
                 CoordHeight coords = new CoordHeight(-1, -1, -1);
@@ -69,6 +72,14 @@ namespace A3_Arty_Calc
                     Console.WriteLine("Error while converting values");
                 }
                 coordList.Add(coords);
+                lineCount++;
+
+                if (lineCount % 10000 == 0)
+                {
+                    Dispatcher.Invoke(
+                        new Action(() => Map_Progressbar.Value = lineCount / totalLines * 100)
+                    );
+                }
             }
             Console.WriteLine("List initialised");
             Console.WriteLine(coordList.Count);
@@ -234,7 +245,7 @@ namespace A3_Arty_Calc
 
         private Ellipse createTriggerEllipse(Point coords)
         {
-            
+
             Ellipse ellipse = createEllipse(coords, triggerSize, triggerBrush, 0.25);
             ellipse.IsHitTestVisible = false;
 
