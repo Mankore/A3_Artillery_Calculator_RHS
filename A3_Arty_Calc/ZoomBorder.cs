@@ -97,8 +97,11 @@ namespace A3_Arty_Calc
                 absoluteX = relative.X * st.ScaleX + tt.X;
                 absoluteY = relative.Y * st.ScaleY + tt.Y;
 
-                st.ScaleX += zoom;
-                st.ScaleY += zoom;
+                if (st.ScaleX + zoom >= 1.0)
+                {
+                    st.ScaleX += zoom;
+                    st.ScaleY += zoom;
+                }
 
                 tt.X = absoluteX - relative.X * st.ScaleX;
                 tt.Y = absoluteY - relative.Y * st.ScaleY;
