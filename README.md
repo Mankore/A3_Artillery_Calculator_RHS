@@ -26,7 +26,7 @@ Could be used for any artillery type, since the algorithm works for any airFrict
 
 ### Map Window Controls
 
-**Scroll Wheel**: Zoom
+**Scroll Wheel**: Zoom\
 **Hold LMB**: Pan
 **RMB Click**: Reset Pan and Zoom
 
