@@ -28,31 +28,28 @@ namespace A3_Arty_Calc
         static Brush friendlyBrush = Brushes.DarkBlue;
         static Brush targetBrush = Brushes.Red;
         static Brush triggerBrush = Brushes.Yellow;
-        int triggerSize;
+        private double triggerSize;
         public MapWindow()
         {
             InitializeComponent();
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             string SelectedMap = mainWindow.Map_Selector.Text;
 
-            Thread thread = new Thread(() => initList(SelectedMap.ToLower() + ".txt"));
-            thread.IsBackground = true;
-            thread.Start();
-
             //initList(SelectedMap.ToLower() + ".txt");
             
             var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img", SelectedMap + "_opt.png");
             Uri uri = new Uri(path);
-            Console.WriteLine(uri);
             BitmapImage bitmap = new BitmapImage(uri);
-
-            this.triggerSize = bitmap.PixelHeight / coordList[coordList.Count - 1].y * 5;
-            Console.WriteLine($"{bitmap.PixelWidth} {bitmap.PixelHeight} {coordList[coordList.Count - 1].y} {coordList[coordList.Count - 1].x} {triggerSize}");
             
             Map_Image.Source = bitmap;
+            double pixelHeight = Map_Image.Height;
+
+            Thread thread = new Thread(() => initList(pixelHeight, SelectedMap.ToLower() + ".txt"));
+            thread.IsBackground = true;
+            thread.Start();
         }
 
-        private void initList(string filename = "sahrani.txt")
+        private void initList(double mapPixelHeight, string filename = "sahrani.txt")
         {
             if (coordList.Count != 0) coordList.Clear();
             foreach (string line in System.IO.File.ReadLines("./coordinates/" + filename))
@@ -75,6 +72,8 @@ namespace A3_Arty_Calc
             }
             Console.WriteLine("List initialised");
             Console.WriteLine(coordList.Count);
+
+            triggerSize = mapPixelHeight / coordList[coordList.Count - 1].y * 100;
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
