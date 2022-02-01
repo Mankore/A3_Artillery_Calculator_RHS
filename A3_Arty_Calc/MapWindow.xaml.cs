@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,14 +34,19 @@ namespace A3_Arty_Calc
             InitializeComponent();
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             string SelectedMap = mainWindow.Map_Selector.Text;
-            initList(SelectedMap.ToLower() + ".txt");
-            //var uri = new Uri("pack://application:,,,/img/" + SelectedMap + "_opt.png");
+
+            Thread thread = new Thread(() => initList(SelectedMap.ToLower() + ".txt"));
+            thread.IsBackground = true;
+            thread.Start();
+
+            //initList(SelectedMap.ToLower() + ".txt");
+            
             var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img", SelectedMap + "_opt.png");
             Uri uri = new Uri(path);
             Console.WriteLine(uri);
             BitmapImage bitmap = new BitmapImage(uri);
 
-            this.triggerSize = bitmap.PixelHeight / coordList[coordList.Count - 1].y * 6;
+            this.triggerSize = bitmap.PixelHeight / coordList[coordList.Count - 1].y * 5;
             Console.WriteLine($"{bitmap.PixelWidth} {bitmap.PixelHeight} {coordList[coordList.Count - 1].y} {coordList[coordList.Count - 1].x} {triggerSize}");
             
             Map_Image.Source = bitmap;
