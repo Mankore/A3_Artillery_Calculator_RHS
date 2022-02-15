@@ -29,6 +29,7 @@ namespace A3_Arty_Calc
         static Brush targetBrush = Brushes.Red;
         static Brush triggerBrush = Brushes.Yellow;
         private double triggerSize;
+        private double targetSize;
         public MapWindow()
         {
             InitializeComponent();
@@ -83,6 +84,7 @@ namespace A3_Arty_Calc
             Console.WriteLine(coordList.Count);
 
             triggerSize = mapPixelHeight / coordList[coordList.Count - 1].y * 100;
+            targetSize = mapPixelHeight / coordList[coordList.Count - 1].y * 2;
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -151,7 +153,7 @@ namespace A3_Arty_Calc
 
         private Ellipse createMark(Point coords, bool isShiftPressed, CoordHeight foundCoord)
         {
-            Ellipse ellipse = createEllipse(coords, 0.5, isShiftPressed ? friendlyBrush : targetBrush, 0.75);
+            Ellipse ellipse = createEllipse(coords, targetSize, isShiftPressed ? friendlyBrush : targetBrush, 0.75);
 
             ellipse.MouseLeave += (object sender, MouseEventArgs e) =>
             {
