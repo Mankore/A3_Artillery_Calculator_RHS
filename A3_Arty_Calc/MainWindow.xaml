@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:A3_Arty_Calc"
         ResizeMode="NoResize"
         mc:Ignorable="d"
+        Icon="icons/arty.ico"
         Title="ArmA 3 RHS Artillery Calculator" Height="542" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>

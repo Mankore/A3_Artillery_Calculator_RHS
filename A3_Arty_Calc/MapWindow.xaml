@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:A3_Arty_Calc"
         ResizeMode="NoResize"
         KeyDown="Window_KeyDown"
+        Icon="icons/map.ico"
         Title="Map" Height="650" Width="800">
     <Grid>
         <local:ZoomBorder x:Name="border" Background="Gray" ClipToBounds="True">
