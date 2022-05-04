@@ -31,7 +31,9 @@ namespace A3_Arty_Calc
             new Art_2S1(),
             new Art_M109A6(),
             new Art_2S3M1(),
+            new Art_BMD_1R(),
         };
+        public double xBattery { get; set; }
 
         List<TargetLogItem> logItems = new List<TargetLogItem>();
         public MainWindow()
@@ -61,10 +63,12 @@ namespace A3_Arty_Calc
                 Map_Selector.Items.Add(item.Replace(".txt", ""));
             }
             Map_Selector.SelectedItem = Map_Selector.Items[0];
+            DataContext = this;
         }
 
         private void Compute_Button_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine(this.xBattery);
             bool isInputEmptyCondition = String.IsNullOrEmpty(Battery_X.Text) || String.IsNullOrEmpty(Battery_Y.Text) || String.IsNullOrEmpty(Battery_Alt.Text) || String.IsNullOrEmpty(Target_X.Text) || String.IsNullOrEmpty(Target_Y.Text) || String.IsNullOrEmpty(Target_Alt.Text);
             if (isInputEmptyCondition)
             {

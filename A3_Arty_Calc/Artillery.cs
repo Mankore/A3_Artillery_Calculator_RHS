@@ -373,4 +373,83 @@ namespace A3_Arty_Calc
             }
         }
     }
+
+    class Art_BMD_1R : Artillery
+    {
+        public override string Name
+        {
+            get
+            {
+                return "BMD-1R";
+            }
+        }
+        public override float minAngle
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public override float maxAngle
+        {
+            get
+            {
+                return 70;
+            }
+        }
+
+        public override FireMode[] modes
+        {
+            get
+            {
+                return new FireMode[] {
+                    new FireMode("Full Charge", 1f),
+                };
+            }
+        }
+
+        public override double simulationStep
+        {
+            get
+            {
+                return 0.05;
+            }
+        }
+
+        public override ShellType[] shellTypes
+        {
+            get
+            {
+                return new ShellType[] { new _S8() };
+            }
+        }
+
+        public override bool isAirFriction
+        {
+            get
+            {
+                return true;
+            }
+        }
+        public override Vector3D getBaseProjectileSpawnPoint(double angle)
+        {
+            return new Vector3D(0, 0, 0);
+        }
+        public override AngleSolution[] angleSolutions
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public override double angleAdjustment
+        {
+            get
+            {
+                return 0;
+            }
+        }
+    }
 }

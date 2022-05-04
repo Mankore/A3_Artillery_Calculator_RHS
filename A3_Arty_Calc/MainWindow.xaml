@@ -25,7 +25,7 @@
         </ComboBox>
         <Label Grid.ColumnSpan="2" Content="Select Charge" HorizontalAlignment="Left" Margin="345,65,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="151" Margin="476,12,0,0" TextWrapping="Wrap" Text="Solution" VerticalAlignment="Top" Width="306" AcceptsReturn="True" Name="SolutionTextBox" IsReadOnly="True"/>
-        <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" Name="Battery_X" PreviewTextInput="NumberValidationTextBox"/>
+        <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,37,0,0" TextWrapping="Wrap" Text="{Binding xBattery}" VerticalAlignment="Top" Width="92" Name="Battery_X" PreviewTextInput="NumberValidationTextBox"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="121,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" x:Name="Battery_Y" PreviewTextInput="NumberValidationTextBox"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="231,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" x:Name="Battery_Alt" PreviewTextInput="NumberValidationTextBox"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="15,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" x:Name="Target_X" PreviewTextInput="NumberValidationTextBox"/>
