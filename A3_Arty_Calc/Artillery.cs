@@ -452,4 +452,176 @@ namespace A3_Arty_Calc
             }
         }
     }
+
+    class Art_M252 : Artillery
+    {
+        public override string Name
+        {
+            get
+            {
+                return "M252";
+            }
+        }
+        public override float minAngle
+        {
+            get
+            {
+                return 45;
+            }
+        }
+
+        public override float maxAngle
+        {
+            get
+            {
+                return 85.20f;
+            }
+        }
+
+        public override FireMode[] modes
+        {
+            get
+            {
+                return new FireMode[] {
+                    new FireMode("CHARGE 4", 1),
+                    new FireMode("CHARGE 3", 0.8f),
+                    new FireMode("CHARGE 2", 0.6f),
+                    new FireMode("CHARGE 1", 0.4f),
+                    new FireMode("CHARGE 0", 0.2f)
+                };
+            }
+        }
+
+        public override double simulationStep
+        {
+            get
+            {
+                return 0.05;
+            }
+        }
+
+        public override ShellType[] shellTypes
+        {
+            get
+            {
+                return new ShellType[] { new _M821_HE() };
+            }
+        }
+
+        public override bool isAirFriction
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override Vector3D getBaseProjectileSpawnPoint(double angle)
+        {
+            return new Vector3D(0, 0, 0);
+        }
+
+        public override AngleSolution[] angleSolutions
+        {
+            get
+            {
+                return new AngleSolution[]
+                {
+                };
+            }
+        }
+
+        public override double angleAdjustment
+        {
+            get
+            {
+                return 0;
+            }
+        }
+    }
+
+    class Art_2B14_1 : Artillery
+    {
+        public override string Name
+        {
+            get
+            {
+                return "2B14-1_Podnos";
+            }
+        }
+        public override float minAngle
+        {
+            get
+            {
+                return 40;
+            }
+        }
+
+        public override float maxAngle
+        {
+            get
+            {
+                return 85;
+            }
+        }
+
+        public override FireMode[] modes
+        {
+            get
+            {
+                return new FireMode[] {
+                    new FireMode("Semi (far)", 1),
+                    new FireMode("Semi (medium)", 0.7f),
+                    new FireMode("Semi (close)", 0.35f),
+                };
+            }
+        }
+
+        public override double simulationStep
+        {
+            get
+            {
+                return 0.05;
+            }
+        }
+
+        public override ShellType[] shellTypes
+        {
+            get
+            {
+                return new ShellType[] { new _3VO18() };
+            }
+        }
+
+        public override bool isAirFriction
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override Vector3D getBaseProjectileSpawnPoint(double angle)
+        {
+            return new Vector3D(0, 0, 0);
+        }
+
+        public override AngleSolution[] angleSolutions
+        {
+            get
+            {
+                return new AngleSolution[]
+                {
+                };
+            }
+        }
+
+        public override double angleAdjustment
+        {
+            get
+            {
+                return 0;
+            }
+        }
+    }
 }

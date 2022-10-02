@@ -32,6 +32,8 @@ namespace A3_Arty_Calc
             new Art_M109A6(),
             new Art_2S3M1(),
             new Art_BMD_1R(),
+            new Art_M252(),
+            new Art_2B14_1(),
         };
         public double xBattery { get; set; }
 

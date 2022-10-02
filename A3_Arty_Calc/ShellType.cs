@@ -230,4 +230,62 @@ namespace A3_Arty_Calc
             }
         }
     }
+
+    class _M821_HE : ShellType
+    {
+        public override double airFriction
+        {
+            get
+            {
+                return 0;
+            }
+        }
+        public override double initSpeed
+        {
+            get
+            {
+                return 200;
+            }
+        }
+        public override string name
+        {
+            get
+            {
+                return "M821_HE";
+            }
+        }
+
+        public override double thrust => throw new NotImplementedException();
+
+        public override double thrustTime => throw new NotImplementedException();
+    }
+
+    class _3VO18 : ShellType
+    {
+        public override double airFriction
+        {
+            get
+            {
+                return 0;
+            }
+        }
+        public override double initSpeed
+        {
+            get
+            {
+                return 211;
+            }
+        }
+        public override string name
+        {
+            get
+            {
+                return "3VO18";
+            }
+        }
+
+        public override double thrust => throw new NotImplementedException();
+
+        public override double thrustTime => throw new NotImplementedException();
+    }
 }
