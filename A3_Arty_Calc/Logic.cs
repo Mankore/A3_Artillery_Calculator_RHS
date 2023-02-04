@@ -139,7 +139,6 @@ namespace A3_Arty_Calc
 
                 if (apex < currentPos.Z) apex = currentPos.Z;
 
-                tof += deltaT;
                 angle = Math.Atan2(speed.Z, speed.Y);
             }
             double vyRatio = (altDiff - currentPos.Z) / speed.Z;
