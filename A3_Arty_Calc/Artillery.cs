@@ -118,7 +118,7 @@ namespace A3_Arty_Calc
         {
             get
             {
-                return -0.135;
+                return -0.14;
             }
         }
     }
@@ -202,7 +202,7 @@ namespace A3_Arty_Calc
         {
             get
             {
-                return 0;
+                return -0.14;
             }
         }
     }
@@ -284,7 +284,7 @@ namespace A3_Arty_Calc
         {
             get
             {
-                return 0;
+                return 0.1;
             }
         }
     }
@@ -369,7 +369,7 @@ namespace A3_Arty_Calc
         {
             get
             {
-                return 0;
+                return -0.23;
             }
         }
     }
