@@ -6,6 +6,8 @@ Was mainly developed for **2S1 (Direct Fire)** Artillery, since it has no build-
 
 Could be used for any artillery type, since the algorithm works for any airFriction values. 
 
+New web version: https://mankore.github.io/a3-arty-react/
+
 ## UI
 
 ![UI Preview Image](preview.png?raw=true)

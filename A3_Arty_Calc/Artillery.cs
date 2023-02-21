@@ -284,7 +284,7 @@ namespace A3_Arty_Calc
         {
             get
             {
-                return 0.1;
+                return 0;
             }
         }
     }
