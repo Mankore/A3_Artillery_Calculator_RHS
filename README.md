@@ -1,12 +1,11 @@
 # WPF Artillery calculator for Arma 3 RHS Artillery
+## New Version: https://github.com/Mankore/a3-arty-react
 ## About
 
 This app allows you to calculate solutions for RHS artillery in Arma 3 by using 4-digit coordinates and altitude values. 
 Was mainly developed for **2S1 (Direct Fire)** Artillery, since it has no build-in Artillery Computer and its shells have airFriction values, unlike the classic artillery in Arma 3 (which doesn't have airFriction).
 
 Could be used for any artillery type, since the algorithm works for any airFriction values. 
-
-New web version: https://mankore.github.io/a3-arty-react/
 
 ## UI
 
